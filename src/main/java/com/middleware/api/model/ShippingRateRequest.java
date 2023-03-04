@@ -70,7 +70,18 @@ public class ShippingRateRequest {
 //	@JsonIgnoreProperties("shippingRateRequest")
 //    private ShippingRateResponse shippingRateResponse;
 
-	@OneToOne(mappedBy = "shippingRateRequest",fetch = FetchType.EAGER, optional = false)
+//	@OneToOne(mappedBy = "shippingRateRequest")
+//    private ShippingRateResponse shippingRateResponse;
+	
+//	@OneToOne(mappedBy = "shippingRateRequest", cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY, optional = false)
+//  private ShippingRateResponse shippingRateResponse;
+	
+//	@OneToOne(mappedBy = "shippingRateRequest", cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY, optional = false)
+//  private ShippingRateResponse shippingRateResponse;
+	
+	@OneToOne(mappedBy = "shippingRateRequest")
     private ShippingRateResponse shippingRateResponse;
 	
 	public int getId() {
@@ -185,45 +196,45 @@ public class ShippingRateRequest {
 		this.createdAt = createdAt;
 	}
 
-	@Override
-	public String toString() {
-		return "ShippingRateRequest [id=" + id + ", originCountry=" + originCountry + ", originState=" + originState
-				+ ", originPostcode=" + originPostcode + ", destinationCountry=" + destinationCountry
-				+ ", destinationState=" + destinationState + ", destinationPostcode=" + destinationPostcode
-				+ ", length=" + length + ", width=" + width + ", height=" + height + ", parcelWeight=" + parcelWeight
-				+ ", documentWeight=" + documentWeight + ", selectedType=" + selectedType + ", createdAt=" + createdAt
-				+ ", shippingRateResponse=" + shippingRateResponse + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "ShippingRateRequest [id=" + id + ", originCountry=" + originCountry + ", originState=" + originState
+//				+ ", originPostcode=" + originPostcode + ", destinationCountry=" + destinationCountry
+//				+ ", destinationState=" + destinationState + ", destinationPostcode=" + destinationPostcode
+//				+ ", length=" + length + ", width=" + width + ", height=" + height + ", parcelWeight=" + parcelWeight
+//				+ ", documentWeight=" + documentWeight + ", selectedType=" + selectedType + ", createdAt=" + createdAt
+//				+ ", shippingRateResponse=" + shippingRateResponse + "]";
+//	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(createdAt, destinationCountry, destinationPostcode, destinationState, documentWeight,
-				height, id, length, originCountry, originPostcode, originState, parcelWeight, selectedType,
-				shippingRateResponse, width);
-	}
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(createdAt, destinationCountry, destinationPostcode, destinationState, documentWeight,
+//				height, id, length, originCountry, originPostcode, originState, parcelWeight, selectedType,
+//				shippingRateResponse, width);
+//	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ShippingRateRequest other = (ShippingRateRequest) obj;
-		return Objects.equals(createdAt, other.createdAt)
-				&& Objects.equals(destinationCountry, other.destinationCountry)
-				&& Objects.equals(destinationPostcode, other.destinationPostcode)
-				&& Objects.equals(destinationState, other.destinationState)
-				&& Objects.equals(documentWeight, other.documentWeight) && Objects.equals(height, other.height)
-				&& id == other.id && Objects.equals(length, other.length)
-				&& Objects.equals(originCountry, other.originCountry)
-				&& Objects.equals(originPostcode, other.originPostcode)
-				&& Objects.equals(originState, other.originState) && Objects.equals(parcelWeight, other.parcelWeight)
-				&& Objects.equals(selectedType, other.selectedType)
-				&& Objects.equals(shippingRateResponse, other.shippingRateResponse)
-				&& Objects.equals(width, other.width);
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		ShippingRateRequest other = (ShippingRateRequest) obj;
+//		return Objects.equals(createdAt, other.createdAt)
+//				&& Objects.equals(destinationCountry, other.destinationCountry)
+//				&& Objects.equals(destinationPostcode, other.destinationPostcode)
+//				&& Objects.equals(destinationState, other.destinationState)
+//				&& Objects.equals(documentWeight, other.documentWeight) && Objects.equals(height, other.height)
+//				&& id == other.id && Objects.equals(length, other.length)
+//				&& Objects.equals(originCountry, other.originCountry)
+//				&& Objects.equals(originPostcode, other.originPostcode)
+//				&& Objects.equals(originState, other.originState) && Objects.equals(parcelWeight, other.parcelWeight)
+//				&& Objects.equals(selectedType, other.selectedType)
+//				&& Objects.equals(shippingRateResponse, other.shippingRateResponse)
+//				&& Objects.equals(width, other.width);
+//	}
 
 	public ShippingRateResponse getShippingRateResponse() {
 		return shippingRateResponse;
@@ -232,6 +243,9 @@ public class ShippingRateRequest {
 	public void setShippingRateResponse(ShippingRateResponse shippingRateResponse) {
 		this.shippingRateResponse = shippingRateResponse;
 	}
+	public ShippingRateRequest() {
+		super();
+	}	
 
 	
 	

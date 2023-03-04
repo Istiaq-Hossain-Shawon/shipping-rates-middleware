@@ -20,6 +20,14 @@ public interface ShippingRateRequestRepository extends JpaRepository<ShippingRat
 	@Transactional
 	void saveAndFlush(Optional<ShippingRateRequest> shippingRateRequest);	
 	
+	
+	
+	
+//	@Query(value ="SELECT pst.* FROM shipping_rate_request_tbl  pst  where  pst.origin_postcode=:originPostcode   ",nativeQuery = true)
+//	List<ShippingRateRequest> getShippingRateRequest(
+//			@Param("originPostcode") String originPostcode			
+//			);	
+	
 	@Query(value ="SELECT pst.* FROM shipping_rate_request_tbl  pst  where pst.origin_country like %:origin_country%   and pst.origin_state like %:origin_state%  and  pst.origin_postcode like %:origin_postcode%  and pst.destination_country like %:destination_country% and pst.destination_state like %:destination_state%  and pst.destination_postcode like %:destination_postcode%  and pst.length like %:length%  and pst.width like %:width% and pst.height like %:height%  and pst.parcel_weight like %:parcel_weight%  and pst.document_weight like %:document_weight%  and pst.selected_type like %:selected_type% ",nativeQuery = true)
 	List<ShippingRateRequest> getShippingRateRequest(
 			@Param("origin_country") String origin_country,

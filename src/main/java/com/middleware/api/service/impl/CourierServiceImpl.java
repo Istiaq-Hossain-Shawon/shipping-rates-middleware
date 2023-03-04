@@ -34,7 +34,6 @@ import com.middleware.api.factory.CourierFactory;
 import com.middleware.api.model.CityLinkExpressRequest;
 import com.middleware.api.model.ShippingRateRequest;
 import com.middleware.api.model.ShippingRateResponse;
-import com.middleware.api.repository.CityLinkExpressRequestRepository;
 import com.middleware.api.repository.ShippingRateRequestRepository;
 import com.middleware.api.repository.ShippingRateResponseRepository;
 import com.middleware.api.request.ShippingRateRequestDto;
@@ -58,9 +57,7 @@ public class CourierServiceImpl implements  CourierService
 		this.shippingRateResponseRepository = shippingRateResponseRepository;
 	}
 	 
-	@Override
-	public ResponseDTO GetShippingRate(ShippingRateRequestDto shippingRequest) {		
-		List<ShippingRateDto> data=new ArrayList<>();
+	private ResponseDTO requestCacheHandle(ShippingRateRequestDto shippingRequest) {
 		List<ShippingRateRequest> existingShippingrequest=shippingRateRequestRepository.getShippingRateRequest(
 				shippingRequest.getOriginCountry(),
 				shippingRequest.getOriginState(),
@@ -75,14 +72,32 @@ public class CourierServiceImpl implements  CourierService
 				shippingRequest.getDocumentWeight(),
 				shippingRequest.getSelectedType()
 				);
+
 		System.out.println("Existing Shipping Request");
-		System.out.println(existingShippingrequest);
-		logger.info("",existingShippingrequest);
+		for(var gadgets : existingShippingrequest){
+		      System.out.println(gadgets.getOriginPostcode());
+		}
 		if(!existingShippingrequest.isEmpty()) {
 			
-//			shippingRateResponseRepository.fin
+			Gson g = new Gson();
+			ResponseDTO existingResponse = g.fromJson(existingShippingrequest.get(0).getShippingRateResponse().getDetailResponse(), ResponseDTO.class);
+			return existingResponse;
 		}
-		ShippingRateRequest shippingRateRequest=SaveRequest(shippingRequest);
+		return new ResponseDTO();
+	}
+	@Override
+	public ResponseDTO GetShippingRate(ShippingRateRequestDto shippingRequest) {		
+		
+		var cacheResponse=requestCacheHandle(shippingRequest);
+//		System.out.println(cacheResponse.toString());
+//		System.out.println(cacheResponse.getData().size());
+		if(cacheResponse.getData()!=null && cacheResponse.getData().size()>0) {
+			return cacheResponse;
+		}		
+		
+		ShippingRateRequest shippingRateRequest=saveRequest(shippingRequest);
+		
+		List<ShippingRateDto> data=new ArrayList<>();
 		
 		CourierFactory courierFactory = new CourierFactory();
 	    
@@ -93,8 +108,7 @@ public class CourierServiceImpl implements  CourierService
         	    
         CourierRate jtsCourierRate = courierFactory.getCourier(Courier.JTEXPRESS.getName());      
         
-        data.add(jtsCourierRate.getRate(shippingRequest));
-		
+        data.add(jtsCourierRate.getRate(shippingRequest));		
 		
 		
 		ResponseDTO responseDTO = ShippingRateUtil.createResponseSuccess();
@@ -103,23 +117,19 @@ public class CourierServiceImpl implements  CourierService
 		
 		Gson gson = new Gson();
 		String responeString=gson.toJson(responseDTO, ResponseDTO.class);
-		SaveResponse(shippingRateRequest,responeString);
+		
+		saveResponse(shippingRateRequest,responeString);
 		
 		return responseDTO;
 	}
-	private ShippingRateRequest ExistingRequest(ShippingRateRequestDto shippingRequest) {
-		return new ShippingRateRequest();
-		
-	}
-	
-
-	private ShippingRateRequest SaveRequest(ShippingRateRequestDto shippingRateRequestDto) {
+ 
+	private ShippingRateRequest saveRequest(ShippingRateRequestDto shippingRateRequestDto) {
 		var shippingRateRequest = new ShippingRateRequest();
 		BeanUtils.copyProperties(shippingRateRequestDto, shippingRateRequest);		
 		shippingRateRequest=shippingRateRequestRepository.saveAndFlush(shippingRateRequest);
 		return shippingRateRequest;
 	}	
-	private ShippingRateResponse SaveResponse(ShippingRateRequest shippingRateRequest,String response) {
+	private ShippingRateResponse saveResponse(ShippingRateRequest shippingRateRequest,String response) {
 		var shippingRateResponse = new ShippingRateResponse();
 		shippingRateResponse.setShippingRateRequest(shippingRateRequest);
 		shippingRateResponse.setDetailResponse(response);	
