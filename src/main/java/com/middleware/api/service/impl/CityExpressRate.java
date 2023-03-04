@@ -1,5 +1,8 @@
 package com.middleware.api.service.impl;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
 import com.middleware.api.config.util.Courier;
+import com.middleware.api.config.util.SSLUtils;
 import com.middleware.api.config.util.ShippingRateUtil;
 import com.middleware.api.controller.ShippingRateController;
 import com.middleware.api.dto.ShippingRateDto;
@@ -26,8 +30,10 @@ public class CityExpressRate  implements CourierRate {
 	private ShippingRateRequestRepository shippingRateRequestRepository;	
 	private ShippingRateResponseRepository shippingRateResponseRepository;	
 	private final Logger logger = LoggerFactory.getLogger(ShippingRateController.class);
-	@Autowired
-	RestTemplate restTemplate;
+	
+//	@Autowired
+//	private RestTemplate restTemplate;
+	
 	@Override
 	public ShippingRateDto getRate(ShippingRateRequestDto shippingRequest) {
 
@@ -72,6 +78,19 @@ public class CityExpressRate  implements CourierRate {
 	    HttpEntity<String> request = new HttpEntity<String>(
 	    		requestBody.toString(), headers);
 	    String url = "https://www.citylinkexpress.com/wp-json/wp/v2/getShippingRate";
+	    
+//	    try {
+//			SSLUtils.turnOffSslChecking();
+//		} catch (KeyManagementException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NoSuchAlgorithmException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	    
+	    RestTemplate restTemplate= new RestTemplate();
+	    
 	    String cityLinkRestResponse = restTemplate
 	            .postForObject(url, request, String.class);
         System.out.println(cityLinkRestResponse);

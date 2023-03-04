@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -50,6 +51,13 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 		return super.authenticationManagerBean();
 	}
 
+	private static final String[] AUTH_WHITELIST = {
+	        "/authenticate",
+	        "/swagger-resources/**",
+	        "/swagger-ui/**",
+	        "/v3/api-docs",
+	        "/webjars/**"
+	};
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
@@ -57,8 +65,25 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 		
 		httpSecurity.csrf().disable()
 				.authorizeRequests().antMatchers("/home").permitAll().
-				antMatchers("/requesttoken").permitAll().
-						anyRequest().authenticated().and().
+				antMatchers("/requesttoken").permitAll()
+				// allow anonymous resource requests
+                .antMatchers(
+                        HttpMethod.GET,
+                        "/",
+                        "/v2/api-docs",           // swagger
+                        "/webjars/**",            // swagger-ui webjars
+                        "/swagger-resources/**",  // swagger-ui resources
+                        "/configuration/**",      // swagger configuration
+                        "/*.html",
+                        "/favicon.ico",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js"
+                ).permitAll().
+						anyRequest().authenticated().
+						
+						and().
+						
 						exceptionHandling().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		

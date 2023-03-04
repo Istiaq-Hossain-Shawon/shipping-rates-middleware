@@ -50,8 +50,7 @@ public class CourierServiceImpl implements  CourierService
 	private ShippingRateRequestRepository shippingRateRequestRepository;	
 	private ShippingRateResponseRepository shippingRateResponseRepository;	
 	private final Logger logger = LoggerFactory.getLogger(ShippingRateController.class);
-	@Autowired
-	RestTemplate restTemplate;
+	 
 	
 	@Autowired
 	public CourierServiceImpl(ShippingRateRequestRepository shippingRateRequestRepository,ShippingRateResponseRepository shippingRateResponseRepository) {

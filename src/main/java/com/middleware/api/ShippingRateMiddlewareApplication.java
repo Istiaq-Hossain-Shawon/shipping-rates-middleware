@@ -45,26 +45,10 @@ public class ShippingRateMiddlewareApplication {
 		SpringApplication.run(ShippingRateMiddlewareApplication.class, args);
 	}
 	@Bean
-    public RestTemplate getRestTemplate() throws KeyManagementException, NoSuchAlgorithmException {
-	  SSLUtils.turnOffSslChecking();
-      return new RestTemplate();
-    }
-//    @Bean
-//    GlobalExceptionHandler globalExceptionHandler() {
-//        return new GlobalExceptionHandler();
-//    }
-//	@Bean(name = "restTemplateByPassSSL")
-//	public RestTemplate restTemplateByPassSSL()
-//	        throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
-//	    TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
-//	    HostnameVerifier hostnameVerifier = (s, sslSession) -> true;
-//	    SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(null, acceptingTrustStrategy).build();
-//	    SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
-//	    CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(csf).build();
-//	    HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-//	    requestFactory.setHttpClient(httpClient);
-//
-//	    return new RestTemplate(requestFactory);
-//	}
+	public RestTemplate restTemplate() throws KeyManagementException, NoSuchAlgorithmException {
+		SSLUtils.turnOffSslChecking();
+	    return new RestTemplate();
+	}
+
 
 }
