@@ -1,0 +1,32 @@
+server:
+    port: 8096
+    servlet:
+      context-path: /shippingrate
+ 
+spring:
+  datasource:
+    platform: mysql
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysqltask/shippingrate?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false
+    username: root
+    password: 1123456
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+
+logging:
+  level:
+    org.springframework.ws: DEBUG
+    org.apache.http: ERROR
+    javax.net: ERROR
+    sun.security.ssl: DEBUG
+    sun.net: ERROR   
+    com.todotask: TRACE 
+    org.springframework.web: DEBUG
+    java.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE   
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    org.apache.http.wire: ERROR
+

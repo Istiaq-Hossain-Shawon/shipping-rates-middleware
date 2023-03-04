@@ -40,7 +40,7 @@ $ git clone https://github.com/Istiaq-Hossain-Shawon/TodoTask-API
 
 ```
 
-#### Step 3: Import tototask Maven Project into Eclipse
+#### Step 3: Import geolocation-api  Maven Project into Eclipse
 
 To import an existing Maven project into Eclipse, just right-click the Package Explorer and go to:
 
@@ -66,49 +66,6 @@ password: *****
 
 #### Step 5: Run Java application
 
-## Dockerize the application
-Make sure that Docker is installed on the PC
-#### Step 1.  Create Docker Network
-```
-docker network create todo-network
-
-```
-#### Step 2. Create Mysql Container and run
-
-```
-docker container run --name mysqltask --network todo-network -e MYSQL_ROOT_PASSWORD=1123456 -e MYSQL_DATABASE=todotask -d mysql:8
-
-```
-#### Step 3.  Check container List and check the ID:
-```
-docker container ls
-
-```
-#### Step 4.  Check Container logs:
-```
-docker container logs -f ae
-
-```
-
-#### Step 5.  Check Database is created or not :
-```
-docker container exec -it ae bash
-
-```
-#### Step 6.  Check The DockerFile of Spring boot project:
-```
-From openjdk:8
-copy ./target/todotask-0.0.1-SNAPSHOT.jar todotask-0.0.1-SNAPSHOT.jar
-CMD ["java","-jar","todotask-0.0.1-SNAPSHOT.jar"]
-
-```
-#### Step 7.  Build the docker image for the spring boot project: :
-```
-docker image build -t todo-docker 
-
-```
-
-
 ## Api Documentation
 
 This include 7 api endpoints.These are:
@@ -117,7 +74,6 @@ This include 7 api endpoints.These are:
  * **Url**:
 ```
 http://localhost:8095/todotask/requesttoken
-
 ```
  * **Body**:
  ```
@@ -253,11 +209,9 @@ http://localhost:8095/todotask/todoTask?id=8
 * **Url**:
 ```
 http://localhost:8095/todotask/addTask
-
 ```
  * **Body**:
- ```
- {
+ ```{
    "description":"Task 11222234",
    "isDone": false,
    "piorityName":"high"
@@ -289,7 +243,6 @@ http://localhost:8095/todotask/addTask
 * **Url**:
 ```
 http://localhost:8095/todotask/updateTask
-
 ```
  * **Body**:
  ```{
@@ -326,7 +279,6 @@ http://localhost:8095/todotask/updateTask
 * **Url**:
 ```
 http://localhost:8095/todotask/deleteTask
-
 ```
  * **Body**:
  ```{
