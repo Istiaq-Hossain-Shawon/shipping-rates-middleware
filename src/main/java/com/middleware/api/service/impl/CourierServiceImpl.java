@@ -61,10 +61,26 @@ public class CourierServiceImpl implements  CourierService
 	@Override
 	public ResponseDTO GetShippingRate(ShippingRateRequestDto shippingRequest) {		
 		List<ShippingRateDto> data=new ArrayList<>();
-		ShippingRateRequest existingShippingrequest=ExistingRequest(shippingRequest);
-		if(existingShippingrequest!=null) {
+		List<ShippingRateRequest> existingShippingrequest=shippingRateRequestRepository.getShippingRateRequest(
+				shippingRequest.getOriginCountry(),
+				shippingRequest.getOriginState(),
+				shippingRequest.getOriginPostcode(),
+				shippingRequest.getDestinationCountry(),
+				shippingRequest.getDestinationState(),
+				shippingRequest.getDestinationPostcode(),
+				shippingRequest.getLength(),
+				shippingRequest.getWidth(),
+				shippingRequest.getHeight(),
+				shippingRequest.getParcelWeight(),
+				shippingRequest.getDocumentWeight(),
+				shippingRequest.getSelectedType()
+				);
+		System.out.println("Existing Shipping Request");
+		System.out.println(existingShippingrequest);
+		logger.info("",existingShippingrequest);
+		if(!existingShippingrequest.isEmpty()) {
 			
-			
+//			shippingRateResponseRepository.fin
 		}
 		ShippingRateRequest shippingRateRequest=SaveRequest(shippingRequest);
 		

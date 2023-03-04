@@ -5,6 +5,7 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,8 +20,12 @@ public class ShippingRateResponse {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+//	
+//	@OneToOne(fetch = FetchType.EAGER, optional = false)
+//    @JoinColumn(name = "request_id", referencedColumnName = "id")
+//    private ShippingRateRequest shippingRateRequest;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "request_id", referencedColumnName = "id")
     private ShippingRateRequest shippingRateRequest;
 	
