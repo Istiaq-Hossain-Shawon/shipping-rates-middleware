@@ -19,5 +19,14 @@ public class ResponseDTO
 	public void setData(List<ShippingRateDto> data) {
 		this.data = data;
 	}
+	private String message;
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
 }

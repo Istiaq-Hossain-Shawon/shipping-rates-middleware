@@ -27,7 +27,7 @@ public class ShippingRateUtil
 	public static ResponseDTO createResponseFalied(String message)
 	{
 		ResponseDTO responseDTO = new ResponseDTO();
-
+		responseDTO.setMessage(message);
 		return responseDTO;
 	}
 }

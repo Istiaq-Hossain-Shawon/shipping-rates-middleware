@@ -38,10 +38,34 @@ public class ShippingRateController {
 	 
 	
 	@PostMapping(value = "/get")	
-	public ResponseDTO getShippingRates(@RequestBody  ShippingRateRequestDto shippingRateRequest,Principal principal)throws Exception
+	public ResponseDTO getShippingRates(@RequestBody  ShippingRateRequestDto shippingRateRequest,Principal principal,Model model)throws Exception
 	{		
 		try
 		{
+			if(Boolean.TRUE.equals(ShippingRateUtil.checkIfNull(shippingRateRequest.getOriginPostcode()))) {
+				logger.error("Post Code is mendatory.");			
+				return ShippingRateUtil.createResponseFalied("Origin Post Code is mendatory.");
+			}
+			if(Boolean.TRUE.equals(ShippingRateUtil.checkIfNull(shippingRateRequest.getOriginPostcode()))) {
+				logger.error("Post Code is mendatory.");			
+				return ShippingRateUtil.createResponseFalied("Origin Post Code is mendatory.");
+			}
+			if(Boolean.TRUE.equals(ShippingRateUtil.checkIfNull(shippingRateRequest.getLength()))) {
+				logger.error("Length is mendatory.");			
+				return ShippingRateUtil.createResponseFalied("Length is mendatory.");
+			}
+			if(Boolean.TRUE.equals(ShippingRateUtil.checkIfNull(shippingRateRequest.getWidth()))) {
+				logger.error("Width is mendatory.");			
+				return ShippingRateUtil.createResponseFalied("Width is mendatory.");
+			}
+			if(Boolean.TRUE.equals(ShippingRateUtil.checkIfNull(shippingRateRequest.getHeight()))) {
+				logger.error("Height is mendatory.");			
+				return ShippingRateUtil.createResponseFalied("Height is mendatory.");
+			}
+			if(Boolean.TRUE.equals(ShippingRateUtil.checkIfNull(shippingRateRequest.getWidth()))) {
+				logger.error("Width is mendatory.");			
+				return ShippingRateUtil.createResponseFalied("Width is mendatory.");
+			}
 			return courierService.GetShippingRate(shippingRateRequest);
 		}
 		catch (Exception e)
