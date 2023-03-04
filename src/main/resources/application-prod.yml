@@ -1,19 +1,21 @@
 server:
     port: 8096
     servlet:
-      context-path: /shippingrate
- 
+      context-path: /shippingrate 
 spring:
   datasource:
     platform: mysql
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysqltask/shippingrate?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://mysql_db:3306/java_to_dev_app_db?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&serverTimezone=UTC&autoReconnect=true&useSSL=false
     username: root
-    password: 1123456
+    password: 123456
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8InnoDBDialect
 
 logging:
   level:

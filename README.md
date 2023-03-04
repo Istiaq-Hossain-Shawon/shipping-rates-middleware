@@ -66,4 +66,10 @@ password: *****
 
 #### Step 5: Run Java application
 
- 
+##  Run By DOCKER
+
+
+`mvn clean package 
+docker-compose down
+docker-compose up
+`
