@@ -8,9 +8,9 @@ public abstract class RateRequestTemplate {
 	public ShippingRateDto makeRateRequest(ShippingRateRequestDto shippingRequest) {
 		
 
-		if (isCRFTokenNeed()) {
+		if (isCSRFTokenNeed()) {
 
-			getCRFToken();
+			getCSRFToken();
 
 		}
 
@@ -26,10 +26,10 @@ public abstract class RateRequestTemplate {
 
 	}
 	
-	public abstract void getCRFToken();
+	public abstract void getCSRFToken();
 	public abstract void getAuthorizationToken();
 	
-	boolean isCRFTokenNeed() { return true; }
+	boolean isCSRFTokenNeed() { return true; }
 	boolean isAuthorizationTokenNeed() { return true; }
 	
 	public abstract String PostExternalURL(ShippingRateRequestDto shippingRequest);

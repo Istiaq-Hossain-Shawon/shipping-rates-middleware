@@ -35,7 +35,7 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 
 	boolean isAuthorizationTokenNeed() {return false;}
 
-	public void getCRFToken() {
+	public void getCSRFToken() {
 		
 		RestTemplate restTemplate= new RestTemplate();
 		

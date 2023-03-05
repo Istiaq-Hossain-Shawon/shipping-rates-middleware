@@ -18,11 +18,11 @@ import com.middleware.api.service.RateRequestTemplate;
 public class CityLinkRateRequestImpl extends RateRequestTemplate {
 	private final Logger logger = LoggerFactory.getLogger(ShippingRateController.class);
 	
-	boolean isCRFTokenNeed() {return false;}
+	boolean isCSRFTokenNeed() {return false;}
 
 	boolean isAuthorizationTokenNeed() {return false;}
 
-	public void getCRFToken() {}
+	
 
 	public void getAuthorizationToken() {}
 	
@@ -79,4 +79,7 @@ public class CityLinkRateRequestImpl extends RateRequestTemplate {
         return new ShippingRateDto(Courier.CITYLINK.getName(),rate);
 		
 	}
+
+	@Override
+	public void getCSRFToken() {	}
 }
