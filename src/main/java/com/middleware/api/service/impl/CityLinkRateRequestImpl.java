@@ -16,15 +16,24 @@ import com.middleware.api.response.CityLinkExpressResponse;
 import com.middleware.api.service.RateRequestTemplate;
 
 public class CityLinkRateRequestImpl extends RateRequestTemplate {
-	private final Logger logger = LoggerFactory.getLogger(ShippingRateController.class);
+	private final Logger logger = LoggerFactory.getLogger(CityLinkRateRequestImpl.class);
 	
+	
+	@Override
+	protected
 	boolean isCSRFTokenNeed() {return false;}
 
-	boolean isAuthorizationTokenNeed() {return false;}
+	
+	@Override
+	protected
+	boolean isAuthorizationTokenNeed() {return false;}	
 
 	
+	@Override
+	public void getAuthorizationToken() { /* TODO document why this method is empty */ }
 
-	public void getAuthorizationToken() {}
+	@Override
+	public void getCSRFToken() { /* TODO document why this method is empty */ }
 	
 	public String PostExternalURL(ShippingRateRequestDto shippingRequest) {
 		
@@ -38,7 +47,7 @@ public class CityLinkRateRequestImpl extends RateRequestTemplate {
 		requestBody.append("&length="+shippingRequest.getLength());
 		requestBody.append("&width="+shippingRequest.getWidth());
 		requestBody.append("&height="+shippingRequest.getHeight());
-		requestBody.append("&selected_type="+shippingRequest.getSelectedType());
+		requestBody.append("&selected_type="+shippingRequest.getGoodsSelectedType());
 		requestBody.append("&parcel_weight="+shippingRequest.getParcelWeight());
 		requestBody.append("&document_weight="+shippingRequest.getDocumentWeight());
 		
@@ -80,6 +89,5 @@ public class CityLinkRateRequestImpl extends RateRequestTemplate {
 		
 	}
 
-	@Override
-	public void getCSRFToken() {	}
+	
 }

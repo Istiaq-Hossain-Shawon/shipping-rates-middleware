@@ -1,31 +1,19 @@
 package com.middleware.api;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Security.TrustStrategy;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
-
-import com.middleware.api.config.exception.GlobalExceptionHandler;
 import com.middleware.api.config.util.SSLUtils;
 import com.middleware.api.model.User;
 import com.middleware.api.repository.UserRepository;
-
-
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
  
-
-
 @SpringBootApplication
 public class ShippingRateMiddlewareApplication {
 

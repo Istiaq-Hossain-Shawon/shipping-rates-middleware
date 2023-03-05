@@ -40,7 +40,7 @@ public class ShippingRateRequestDto {
 	
 	private float documentWeight;	
 	 
-	private String selectedType;
+	private String goodsSelectedType;
 	
 	private String shippingRatesType;
 	
@@ -162,18 +162,11 @@ public class ShippingRateRequestDto {
 		this.documentWeight = documentWeight;
 	}
 
-	public String getSelectedType() {
-		return selectedType;
-	}
-
-	public void setSelectedType(String selectedType) {
-		this.selectedType = selectedType;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(destinationCountry, destinationPostcode, destinationState, documentWeight, height, length,
-				originCountry, originPostcode, originState, parcelWeight, selectedType, width,itemValue);
+				originCountry, originPostcode, originState, parcelWeight, goodsSelectedType, width,itemValue);
 	}
 	//need default constructor for JSON Parsing
     public ShippingRateRequestDto()
@@ -196,7 +189,7 @@ public class ShippingRateRequestDto {
 		this.height = height;
 		this.parcelWeight = parcelWeight;
 		this.documentWeight = documentWeight;
-		this.selectedType = selectedType;
+		this.goodsSelectedType = selectedType;
 		this.itemValue = itemValue;
 		
 	}
@@ -217,16 +210,24 @@ public class ShippingRateRequestDto {
 				&& Objects.equals(length, other.length) && Objects.equals(originCountry, other.originCountry)
 				&& Objects.equals(originPostcode, other.originPostcode)
 				&& Objects.equals(originState, other.originState) && Objects.equals(parcelWeight, other.parcelWeight)
-				&& Objects.equals(selectedType, other.selectedType) && Objects.equals(width, other.width);
+				&& Objects.equals(goodsSelectedType, other.goodsSelectedType) && Objects.equals(width, other.width);
 	}
 
 	@Override
 	public String toString() {
-		return "CityLinkExpressRequestDto [originCountry=" + originCountry + ", originState=" + originState
+		return "ShippingRateRequestDto [originCountry=" + originCountry + ", originState=" + originState
 				+ ", originPostcode=" + originPostcode + ", destinationCountry=" + destinationCountry
 				+ ", destinationState=" + destinationState + ", destinationPostcode=" + destinationPostcode
 				+ ", length=" + length + ", width=" + width + ", height=" + height + ", parcelWeight=" + parcelWeight
-				+ ", documentWeight=" + documentWeight + ", selectedType=" + selectedType + "]";
+				+ ", documentWeight=" + documentWeight + ", goodsSelectedType=" + goodsSelectedType + "]";
+	}
+
+	public String getGoodsSelectedType() {
+		return goodsSelectedType;
+	}
+
+	public void setGoodsSelectedType(String goodsSelectedType) {
+		this.goodsSelectedType = goodsSelectedType;
 	}
 	
  

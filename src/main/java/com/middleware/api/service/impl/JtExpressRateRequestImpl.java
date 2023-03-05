@@ -25,15 +25,17 @@ import com.middleware.api.response.CityLinkExpressResponse;
 import com.middleware.api.service.RateRequestTemplate;
 
 public class JtExpressRateRequestImpl extends RateRequestTemplate {
-	private final Logger logger = LoggerFactory.getLogger(ShippingRateController.class);
+	private final Logger logger = LoggerFactory.getLogger(JtExpressRateRequestImpl.class);
 	
 	JtExpressToken jtExpressToken= new JtExpressToken();
 	
 	String selectedGoodTypes =GoodTypes.PARCEL.getId();
 	
-	boolean isCRFTokenNeed() {return true;}
+	@Override
+	protected boolean isCSRFTokenNeed() {return true;}
 
-	boolean isAuthorizationTokenNeed() {return false;}
+	@Override
+	protected boolean isAuthorizationTokenNeed() {return false;}
 
 	public void getCSRFToken() {
 		
@@ -63,8 +65,10 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 		
 	}
 
-	public void getAuthorizationToken() {}
+	@Override
+	public void getAuthorizationToken() { /* TODO document why this method is empty */ }
 	
+	@Override
 	public String PostExternalURL(ShippingRateRequestDto shippingRequest) {
 		
 		RestTemplate restTemplate= new RestTemplate();		
@@ -81,14 +85,14 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 		requestBody.append("&width="+shippingRequest.getWidth());
 		requestBody.append("&height="+shippingRequest.getHeight());
 		requestBody.append("&item_value="+shippingRequest.getItemValue());
-		requestBody.append("&selected_type="+shippingRequest.getSelectedType());
-		selectedGoodTypes=shippingRequest.getSelectedType();
+		requestBody.append("&selected_type="+shippingRequest.getGoodsSelectedType());
+		selectedGoodTypes=shippingRequest.getGoodsSelectedType();
 		
-		logger.debug(jtExpressToken.getToken());
+		logger.info(jtExpressToken.getToken());
 		
-		logger.debug(jtExpressToken.getCookie());		
+		logger.info(jtExpressToken.getCookie());		
 			
-		logger.debug(requestBody.toString());
+		// logger.info(requestBody.toString());
 
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);

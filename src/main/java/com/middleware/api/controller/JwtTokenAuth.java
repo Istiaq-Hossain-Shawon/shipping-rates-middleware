@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.middleware.api.config.util.JwtUtil;
 import com.middleware.api.request.AuthenticationRequest;
 import com.middleware.api.response.AuthenticationResponse;
-import com.middleware.api.service.MyUserDetailsService;
+import com.middleware.api.service.impl.MyUserDetailsService;
 
 
 @RestController

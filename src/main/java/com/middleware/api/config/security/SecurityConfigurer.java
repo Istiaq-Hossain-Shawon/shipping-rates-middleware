@@ -21,7 +21,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.middleware.api.config.util.JwtRequestFilter;
-import com.middleware.api.service.MyUserDetailsService;
+import com.middleware.api.service.impl.MyUserDetailsService;
 
 
 
@@ -51,13 +51,13 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 		return super.authenticationManagerBean();
 	}
 
-	private static final String[] AUTH_WHITELIST = {
-	        "/authenticate",
-	        "/swagger-resources/**",
-	        "/swagger-ui/**",
-	        "/v3/api-docs",
-	        "/webjars/**"
-	};
+	// private static final String[] AUTH_WHITELIST = {
+	//         "/authenticate",
+	//         "/swagger-resources/**",
+	//         "/swagger-ui/**",
+	//         "/v3/api-docs",
+	//         "/webjars/**"
+	// };
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
