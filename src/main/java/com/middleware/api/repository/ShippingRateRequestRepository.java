@@ -36,11 +36,11 @@ public interface ShippingRateRequestRepository extends JpaRepository<ShippingRat
 			@Param("destination_country") String destination_country,
 			@Param("destination_state") String destination_state,
 			@Param("destination_postcode") String destination_postcode,
-			@Param("length") String length,
-			@Param("width") String width,
-			@Param("height") String height,
-			@Param("parcel_weight") String parcel_weight,
-			@Param("document_weight") String document_weight,
+			@Param("length") float length,
+			@Param("width") float width,
+			@Param("height") float height,
+			@Param("parcel_weight") float parcel_weight,
+			@Param("document_weight") float document_weight,
 			@Param("selected_type") String selected_type);	
 	
 }

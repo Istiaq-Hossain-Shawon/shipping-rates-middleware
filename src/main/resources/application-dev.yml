@@ -16,7 +16,7 @@ spring:
 
 logging:
   level:
-    org.springframework.ws: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
     org.apache.http: ERROR
     javax.net: ERROR
     sun.security.ssl: DEBUG

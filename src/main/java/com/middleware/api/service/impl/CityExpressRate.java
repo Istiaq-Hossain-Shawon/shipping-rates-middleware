@@ -27,8 +27,7 @@ import com.middleware.api.service.CourierRate;
 
 public class CityExpressRate  implements CourierRate {
 
-	private ShippingRateRequestRepository shippingRateRequestRepository;	
-	private ShippingRateResponseRepository shippingRateResponseRepository;	
+	
 	private final Logger logger = LoggerFactory.getLogger(ShippingRateController.class);
 	
 //	@Autowired
@@ -36,25 +35,6 @@ public class CityExpressRate  implements CourierRate {
 	
 	@Override
 	public ShippingRateDto getRate(ShippingRateRequestDto shippingRequest) {
-
-		
-		ShippingRateDto shippingRateDto=GetCityLinkRates(shippingRequest);
-		
-		return shippingRateDto;
-//		data.add(shippingRateDto);
-		
-		
-		//
-//		ResponseDTO responseDTO = ShippingRateUtil.createResponseSuccess();
-//				
-//		responseDTO.setData(data);
-//		
-//		Gson gson = new Gson();
-//		String responeString=gson.toJson(responseDTO, ResponseDTO.class);
-//		SaveResponse(shippingRateRequest,responeString);
-		
-	}
-	private ShippingRateDto GetCityLinkRates(ShippingRateRequestDto shippingRequest) {
 		
 		try {
 			StringBuilder requestBody = new StringBuilder();
@@ -99,9 +79,10 @@ public class CityExpressRate  implements CourierRate {
 		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return new ShippingRateDto(Courier.CITYLINK.getName(),0.0);
-		}
+		}	
+		 
+	}
+	 	
 		
-		
-	   }
 
 }

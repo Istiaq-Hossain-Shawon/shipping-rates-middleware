@@ -26,23 +26,53 @@ public class ShippingRateRequestDto {
 	private String destinationPostcode;
 	
 	
-	private String length;
+	private float length;
 	
 	
-	private String width;
+	private float width;
 	
 	
-	private String height;
+	private float height;
 	
 	
-	private String parcelWeight;
+	private float parcelWeight;
 	
 	
-	private String documentWeight;	
+	private float documentWeight;	
 	 
 	private String selectedType;
 	
+	private String shippingRatesType;
 	
+	private String shippingType;
+	
+	private float itemValue;
+	
+	 
+
+	public float getItemValue() {
+		return itemValue;
+	}
+
+	public void setItemValue(float itemValue) {
+		this.itemValue = itemValue;
+	}
+
+	public String getShippingRatesType() {
+		return shippingRatesType;
+	}
+
+	public void setShippingRatesType(String shippingRatesType) {
+		this.shippingRatesType = shippingRatesType;
+	}
+
+	public String getShippingType() {
+		return shippingType;
+	}
+
+	public void setShippingType(String shippingType) {
+		this.shippingType = shippingType;
+	}
 
 	public String getOriginCountry() {
 		return originCountry;
@@ -92,43 +122,43 @@ public class ShippingRateRequestDto {
 		this.destinationPostcode = destinationPostcode;
 	}
 
-	public String getLength() {
+	public float getLength() {
 		return length;
 	}
 
-	public void setLength(String length) {
+	public void setLength(float length) {
 		this.length = length;
 	}
 
-	public String getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
-	public void setWidth(String width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
-	public String getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(String height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 
-	public String getParcelWeight() {
+	public float getParcelWeight() {
 		return parcelWeight;
 	}
 
-	public void setParcelWeight(String parcelWeight) {
+	public void setParcelWeight(float parcelWeight) {
 		this.parcelWeight = parcelWeight;
 	}
 
-	public String getDocumentWeight() {
+	public float getDocumentWeight() {
 		return documentWeight;
 	}
 
-	public void setDocumentWeight(String documentWeight) {
+	public void setDocumentWeight(float documentWeight) {
 		this.documentWeight = documentWeight;
 	}
 
@@ -143,7 +173,7 @@ public class ShippingRateRequestDto {
 	@Override
 	public int hashCode() {
 		return Objects.hash(destinationCountry, destinationPostcode, destinationState, documentWeight, height, length,
-				originCountry, originPostcode, originState, parcelWeight, selectedType, width);
+				originCountry, originPostcode, originState, parcelWeight, selectedType, width,itemValue);
 	}
 	//need default constructor for JSON Parsing
     public ShippingRateRequestDto()
@@ -152,8 +182,8 @@ public class ShippingRateRequestDto {
     }
 
 	public ShippingRateRequestDto(String originCountry, String originState, String originPostcode,
-			String destinationCountry, String destinationState, String destinationPostcode, String length, String width,
-			String height, String parcelWeight, String documentWeight, String selectedType) {
+			String destinationCountry, String destinationState, String destinationPostcode, float length, float width,
+			float height, float parcelWeight, float documentWeight, String selectedType,float itemValue) {
 		super();
 		this.originCountry = originCountry;
 		this.originState = originState;
@@ -167,6 +197,8 @@ public class ShippingRateRequestDto {
 		this.parcelWeight = parcelWeight;
 		this.documentWeight = documentWeight;
 		this.selectedType = selectedType;
+		this.itemValue = itemValue;
+		
 	}
 
 	@Override

@@ -58,39 +58,51 @@ public class CourierServiceImpl implements  CourierService
 	}
 	 
 	private ResponseDTO requestCacheHandle(ShippingRateRequestDto shippingRequest) {
-		List<ShippingRateRequest> existingShippingrequest=shippingRateRequestRepository.getShippingRateRequest(
-				shippingRequest.getOriginCountry(),
-				shippingRequest.getOriginState(),
-				shippingRequest.getOriginPostcode(),
-				shippingRequest.getDestinationCountry(),
-				shippingRequest.getDestinationState(),
-				shippingRequest.getDestinationPostcode(),
-				shippingRequest.getLength(),
-				shippingRequest.getWidth(),
-				shippingRequest.getHeight(),
-				shippingRequest.getParcelWeight(),
-				shippingRequest.getDocumentWeight(),
-				shippingRequest.getSelectedType()
-				);
+		try {
+			List<ShippingRateRequest> existingShippingrequest=shippingRateRequestRepository.getShippingRateRequest(
+					shippingRequest.getOriginCountry(),
+					shippingRequest.getOriginState(),
+					shippingRequest.getOriginPostcode(),
+					shippingRequest.getDestinationCountry(),
+					shippingRequest.getDestinationState(),
+					shippingRequest.getDestinationPostcode(),
+					shippingRequest.getLength(),
+					shippingRequest.getWidth(),
+					shippingRequest.getHeight(),
+					shippingRequest.getParcelWeight(),
+					shippingRequest.getDocumentWeight(),
+					shippingRequest.getSelectedType()
+					);
 
-		System.out.println("Existing Shipping Request");
-		for(var gadgets : existingShippingrequest){
-		      System.out.println(gadgets.getOriginPostcode());
-		}
-		if(!existingShippingrequest.isEmpty()) {
+			System.out.println("Existing Shipping Request");
+			for(var gadgets : existingShippingrequest){
+			      System.out.println(gadgets.getOriginPostcode());
+			}
+			if(!existingShippingrequest.isEmpty()) {
+				
+				Gson g = new Gson();
+				ResponseDTO existingResponse = g.fromJson(existingShippingrequest.get(0).getShippingRateResponse().getDetailResponse(), ResponseDTO.class);
+				return existingResponse;
+			}
 			
-			Gson g = new Gson();
-			ResponseDTO existingResponse = g.fromJson(existingShippingrequest.get(0).getShippingRateResponse().getDetailResponse(), ResponseDTO.class);
-			return existingResponse;
+		} catch (Exception e) {
+			logger.info(e.getMessage());
 		}
-		return new ResponseDTO();
+		return new ResponseDTO();		
 	}
+	
 	@Override
 	public ResponseDTO GetShippingRate(ShippingRateRequestDto shippingRequest) {		
 		
+//		CourierFactory courierFactory = new CourierFactory();  
+//		
+//	    CourierRate jtsCourierRate = courierFactory.getCourier(Courier.JTEXPRESS.getName());  
+//	    jtsCourierRate.getRate(shippingRequest);
+//	    
+//	    return ShippingRateUtil.createResponseSuccess();
+		
 		var cacheResponse=requestCacheHandle(shippingRequest);
-//		System.out.println(cacheResponse.toString());
-//		System.out.println(cacheResponse.getData().size());
+
 		if(cacheResponse.getData()!=null && cacheResponse.getData().size()>0) {
 			return cacheResponse;
 		}		
