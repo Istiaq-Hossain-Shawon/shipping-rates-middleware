@@ -38,12 +38,12 @@ import com.middleware.api.repository.ShippingRateRequestRepository;
 import com.middleware.api.repository.ShippingRateResponseRepository;
 import com.middleware.api.request.ShippingRateRequestDto;
 import com.middleware.api.response.CityLinkExpressResponse;
-import com.middleware.api.response.ResponseDTO;
-import com.middleware.api.service.CourierRate;
-import com.middleware.api.service.CourierService;
+import com.middleware.api.response.MiddlewareResponse;
+import com.middleware.api.service.IShippingRate;
+import com.middleware.api.service.ShippingService;
  
 @Service
-public class CourierServiceImpl implements  CourierService
+public class ShippingServiceImpl implements  ShippingService
 {
 	  
 	private ShippingRateRequestRepository shippingRateRequestRepository;	
@@ -52,12 +52,12 @@ public class CourierServiceImpl implements  CourierService
 	 
 	
 	@Autowired
-	public CourierServiceImpl(ShippingRateRequestRepository shippingRateRequestRepository,ShippingRateResponseRepository shippingRateResponseRepository) {
+	public ShippingServiceImpl(ShippingRateRequestRepository shippingRateRequestRepository,ShippingRateResponseRepository shippingRateResponseRepository) {
 		this.shippingRateRequestRepository = shippingRateRequestRepository;
 		this.shippingRateResponseRepository = shippingRateResponseRepository;
 	}
 	 
-	private ResponseDTO requestCacheHandle(ShippingRateRequestDto shippingRequest) {
+	private MiddlewareResponse requestCacheHandle(ShippingRateRequestDto shippingRequest) {
 		try {
 			List<ShippingRateRequest> existingShippingrequest=shippingRateRequestRepository.getShippingRateRequest(
 					shippingRequest.getOriginCountry(),
@@ -81,31 +81,25 @@ public class CourierServiceImpl implements  CourierService
 			if(!existingShippingrequest.isEmpty()) {
 				
 				Gson g = new Gson();
-				ResponseDTO existingResponse = g.fromJson(existingShippingrequest.get(0).getShippingRateResponse().getDetailResponse(), ResponseDTO.class);
+				MiddlewareResponse existingResponse = g.fromJson(existingShippingrequest.get(0).getShippingRateResponse().getDetailResponse(), MiddlewareResponse.class);
 				return existingResponse;
 			}
 			
 		} catch (Exception e) {
 			logger.info(e.getMessage());
 		}
-		return new ResponseDTO();		
+		return new MiddlewareResponse();		
 	}
 	
 	@Override
-	public ResponseDTO GetShippingRate(ShippingRateRequestDto shippingRequest) {		
+	public MiddlewareResponse getShippingRate(ShippingRateRequestDto shippingRequest) {		
 		
-//		CourierFactory courierFactory = new CourierFactory();  
-//		
-//	    CourierRate jtsCourierRate = courierFactory.getCourier(Courier.JTEXPRESS.getName());  
-//	    jtsCourierRate.getRate(shippingRequest);
-//	    
-//	    return ShippingRateUtil.createResponseSuccess();
-		
-		var cacheResponse=requestCacheHandle(shippingRequest);
-
-		if(cacheResponse.getData()!=null && cacheResponse.getData().size()>0) {
-			return cacheResponse;
-		}		
+ 		
+//		var cacheResponse=requestCacheHandle(shippingRequest);
+//
+//		if(cacheResponse.getData()!=null && cacheResponse.getData().size()>0) {
+//			return cacheResponse;
+//		}		
 		
 		ShippingRateRequest shippingRateRequest=saveRequest(shippingRequest);
 		
@@ -113,24 +107,16 @@ public class CourierServiceImpl implements  CourierService
 		
 		CourierFactory courierFactory = new CourierFactory();
 	    
-        CourierRate cityLinkCourierRate = courierFactory.getCourier(Courier.CITYLINK.getName());      
-        
-        data.add(cityLinkCourierRate.getRate(shippingRequest));        
-        
+        IShippingRate cityLinkCourierRate = courierFactory.getCourierRate(Courier.CITYLINK.getName());        
+        data.add(cityLinkCourierRate.getRate(shippingRequest)); 
         	    
-        CourierRate jtsCourierRate = courierFactory.getCourier(Courier.JTEXPRESS.getName());      
-        
-        data.add(jtsCourierRate.getRate(shippingRequest));		
+        IShippingRate jtsCourierRate = courierFactory.getCourierRate(Courier.JTEXPRESS.getName());        
+        data.add(jtsCourierRate.getRate(shippingRequest));			
 		
+		MiddlewareResponse responseDTO = ShippingRateUtil.createResponseSuccess();				
+		responseDTO.setData(data);		
 		
-		ResponseDTO responseDTO = ShippingRateUtil.createResponseSuccess();
-				
-		responseDTO.setData(data);
-		
-		Gson gson = new Gson();
-		String responeString=gson.toJson(responseDTO, ResponseDTO.class);
-		
-		saveResponse(shippingRateRequest,responeString);
+		saveResponse(shippingRateRequest,responseDTO);
 		
 		return responseDTO;
 	}
@@ -141,10 +127,14 @@ public class CourierServiceImpl implements  CourierService
 		shippingRateRequest=shippingRateRequestRepository.saveAndFlush(shippingRateRequest);
 		return shippingRateRequest;
 	}	
-	private ShippingRateResponse saveResponse(ShippingRateRequest shippingRateRequest,String response) {
+	private ShippingRateResponse saveResponse(ShippingRateRequest shippingRateRequest,MiddlewareResponse responseDTO) {
+		
+		Gson gson = new Gson();
+		String responeString=gson.toJson(responseDTO, MiddlewareResponse.class);
+		
 		var shippingRateResponse = new ShippingRateResponse();
 		shippingRateResponse.setShippingRateRequest(shippingRateRequest);
-		shippingRateResponse.setDetailResponse(response);	
+		shippingRateResponse.setDetailResponse(responeString);	
 		shippingRateResponse=shippingRateResponseRepository.saveAndFlush(shippingRateResponse);
 		return shippingRateResponse;
 	}	

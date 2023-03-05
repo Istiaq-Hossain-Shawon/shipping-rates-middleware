@@ -17,19 +17,19 @@ import com.middleware.api.config.util.ShippingRateUtil;
 import com.middleware.api.dto.ShippingRateDto;
 import com.middleware.api.request.AuthenticationRequest;
 import com.middleware.api.request.ShippingRateRequestDto;
-import com.middleware.api.response.ResponseDTO;
-import com.middleware.api.service.CourierService;
+import com.middleware.api.response.MiddlewareResponse;
+import com.middleware.api.service.ShippingService;
 
 
 
 @RestController
 public class ShippingRateController {
 	 
-	private CourierService courierService;
+	private ShippingService courierService;
 	
 		
 	@Autowired
-	public ShippingRateController(CourierService courierService) {
+	public ShippingRateController(ShippingService courierService) {
 		this.courierService = courierService;
 	}
  
@@ -37,7 +37,7 @@ public class ShippingRateController {
 	 
 	
 	@PostMapping(value = "/get")	
-	public ResponseDTO getShippingRates(@RequestBody  ShippingRateRequestDto shippingRateRequest,Principal principal,Model model)throws Exception
+	public MiddlewareResponse getShippingRates(@RequestBody  ShippingRateRequestDto shippingRateRequest,Principal principal,Model model)throws Exception
 	{		
 		try
 		{
@@ -49,7 +49,7 @@ public class ShippingRateController {
 				logger.error("Selected type is mendatory.");			
 				return ShippingRateUtil.createResponseFalied("Selected type is mendatory.");
 			}
-			return courierService.GetShippingRate(shippingRateRequest);
+			return courierService.getShippingRate(shippingRateRequest);
 		}
 		catch (Exception e)
 		{

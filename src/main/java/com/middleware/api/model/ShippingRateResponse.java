@@ -20,24 +20,8 @@ public class ShippingRateResponse {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-//	
-//	@OneToOne(fetch = FetchType.EAGER, optional = false)
-//    @JoinColumn(name = "request_id", referencedColumnName = "id")
-//    private ShippingRateRequest shippingRateRequest;
-//	
-//	@OneToOne(fetch = FetchType.EAGER, optional = false)
-//    @JoinColumn(name = "request_id", referencedColumnName = "id")
-//    private ShippingRateRequest shippingRateRequest;
 	
-//	@OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "request_id",nullable = false)
-//    private ShippingRateRequest shippingRateRequest;
-//	
-//
-//
-//	
-	
-	 @OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "request_id",nullable = false)
     private ShippingRateRequest shippingRateRequest;
 	
@@ -68,37 +52,7 @@ public class ShippingRateResponse {
 	public void setShippingRateRequest(ShippingRateRequest shippingRateRequest) {
 		this.shippingRateRequest = shippingRateRequest;
 	}
-
-//	@Override
-//	public int hashCode() {
-//		return Objects.hash(id, shippingRateRequest);
-//	}
-//
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		ShippingRateResponse other = (ShippingRateResponse) obj;
-//		return id == other.id && Objects.equals(shippingRateRequest, other.shippingRateRequest);
-//	}
-
-//	@Override
-//	public String toString() {
-//		return "ShippingRateResponse [id=" + id + ", shippingRateRequest=" + shippingRateRequest + "]";
-//	}
-
-//	public ShippingRateResponse(int id, ShippingRateRequest shippingRateRequest) {
-//		super();
-//		this.id = id;
-//		this.shippingRateRequest = shippingRateRequest;
-//	}
-//	public ShippingRateResponse() {
-//		 
-//	}
+ 
 	public ShippingRateResponse() {
 		super();
 	}	

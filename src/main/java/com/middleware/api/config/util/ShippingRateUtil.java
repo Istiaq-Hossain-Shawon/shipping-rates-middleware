@@ -2,7 +2,7 @@ package com.middleware.api.config.util;
 
 import java.util.Calendar;
 
-import com.middleware.api.response.ResponseDTO;
+import com.middleware.api.response.MiddlewareResponse;
 
 
 public class ShippingRateUtil
@@ -19,14 +19,14 @@ public class ShippingRateUtil
 		}
 		return false;
 	}
-	public static ResponseDTO createResponseSuccess()
+	public static MiddlewareResponse createResponseSuccess()
 	{
-		ResponseDTO responseDTO = new ResponseDTO();
+		MiddlewareResponse responseDTO = new MiddlewareResponse();
 		return responseDTO;
 	}
-	public static ResponseDTO createResponseFalied(String message)
+	public static MiddlewareResponse createResponseFalied(String message)
 	{
-		ResponseDTO responseDTO = new ResponseDTO();
+		MiddlewareResponse responseDTO = new MiddlewareResponse();
 		responseDTO.setMessage(message);
 		return responseDTO;
 	}

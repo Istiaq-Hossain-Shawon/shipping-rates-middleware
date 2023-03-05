@@ -8,7 +8,7 @@ import com.middleware.api.dto.ShippingRateDto;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseDTO
+public class MiddlewareResponse
 {	
 	private List<ShippingRateDto> data;
 

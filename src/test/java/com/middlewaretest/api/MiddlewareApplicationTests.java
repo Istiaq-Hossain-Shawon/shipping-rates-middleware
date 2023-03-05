@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.middleware.api.dto.ShippingRateDto;
 import com.middleware.api.request.AuthenticationRequest;
 import com.middleware.api.response.AuthenticationResponse;
-import com.middleware.api.response.ResponseDTO;
+import com.middleware.api.response.MiddlewareResponse;
 
 
 import org.junit.Assert;
