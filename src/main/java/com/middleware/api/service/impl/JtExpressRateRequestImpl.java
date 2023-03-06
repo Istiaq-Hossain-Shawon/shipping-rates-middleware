@@ -29,10 +29,10 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 	String selectedGoodTypes =GoodTypes.PARCEL.getId();
 	
 	@Override
-	protected boolean isCSRFTokenNeed() {return true;}
+	public boolean isCSRFTokenNeed() {return true;}
 
 	@Override
-	protected boolean isAuthorizationTokenNeed() {return false;}
+	public boolean isAuthorizationTokenNeed() {return false;}
 
 	public void getCSRFToken() {
 		

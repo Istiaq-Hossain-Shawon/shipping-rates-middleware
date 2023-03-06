@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.middleware.api.config.util.ShippingRateUtil;
 import com.middleware.api.request.ShippingRateRequestDto;
 import com.middleware.api.response.MiddlewareResponse;
-import com.middleware.api.service.ILogisticShippingService;
+import com.middleware.api.service.LogisticShippingService;
 
 
 
@@ -25,13 +25,13 @@ import com.middleware.api.service.ILogisticShippingService;
 @RequestMapping("/")
 public class ShippingRateController {
 	 
-	private ILogisticShippingService logisticShippingService;
+	private LogisticShippingService logisticShippingService;
 	
-	public ShippingRateController(ILogisticShippingService logisticShippingService) {
+	public ShippingRateController(LogisticShippingService logisticShippingService) {
 		this.logisticShippingService = logisticShippingService;
 	}
  
-	 private final Logger logger = LoggerFactory.getLogger(ShippingRateController.class);
+	private final Logger logger = LoggerFactory.getLogger(ShippingRateController.class);
 	 
 	
 	@PostMapping(value = "/shipping-rates")	

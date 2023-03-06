@@ -17,7 +17,7 @@ import com.middleware.api.config.util.JwtUtil;
 import com.middleware.api.dto.ApiError;
 import com.middleware.api.request.AuthenticationRequest;
 import com.middleware.api.response.AuthenticationResponse;
-import com.middleware.api.service.impl.MyUserDetailsService;
+import com.middleware.api.service.impl.UserDetailsServiceImpl;
 
 
 @RestController
@@ -30,7 +30,7 @@ public class JwtTokenAuth {
 	private JwtUtil jwtTokenUtil;
 
 	@Autowired
-	private MyUserDetailsService userDetailsService;
+	private UserDetailsServiceImpl userDetailsService;
 
 	
 	@RequestMapping(value = "/requesttoken", method = RequestMethod.POST)

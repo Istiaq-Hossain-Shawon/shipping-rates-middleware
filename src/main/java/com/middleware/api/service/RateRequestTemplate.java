@@ -29,8 +29,8 @@ public abstract class RateRequestTemplate {
 	public abstract void getCSRFToken();
 	public abstract void getAuthorizationToken();
 	
-	protected boolean isCSRFTokenNeed() { return true; }
-	protected boolean isAuthorizationTokenNeed() { return true; }
+	public abstract boolean isCSRFTokenNeed();
+	public abstract boolean isAuthorizationTokenNeed();
 	
 	public abstract String PostExternalURL(ShippingRateRequestDto shippingRequest);
 	

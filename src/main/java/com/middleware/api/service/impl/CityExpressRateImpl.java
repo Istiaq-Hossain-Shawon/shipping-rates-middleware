@@ -6,10 +6,10 @@ import com.middleware.api.config.util.Courier;
 import com.middleware.api.controller.ShippingRateController;
 import com.middleware.api.dto.ShippingRateDto;
 import com.middleware.api.request.ShippingRateRequestDto;
-import com.middleware.api.service.IShippingRate;
+import com.middleware.api.service.ShippingRate;
 import com.middleware.api.service.RateRequestTemplate;
 
-public class CityExpressRateImpl  implements IShippingRate {
+public class CityExpressRateImpl  implements ShippingRate {
 
 	
 	private final Logger logger = LoggerFactory.getLogger(CityExpressRateImpl.class);

@@ -29,7 +29,7 @@ import com.middleware.api.request.AuthenticationRequest;
 import com.middleware.api.request.ShippingRateRequestDto;
 import com.middleware.api.response.AuthenticationResponse;
 import com.middleware.api.response.MiddlewareResponse;
-import com.middleware.api.service.ILogisticShippingService;
+import com.middleware.api.service.LogisticShippingService;
 
 import org.junit.Assert;
 
@@ -45,7 +45,7 @@ class ShippingRateMiddlewareApplicationTests {
 	private WebApplicationContext context;
 
 	@Autowired
-	private ILogisticShippingService logisticShippingService;
+	private LogisticShippingService logisticShippingService;
 
 	ObjectMapper objectMapper = new ObjectMapper();
 

@@ -21,7 +21,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.middleware.api.config.util.JwtRequestFilter;
-import com.middleware.api.service.impl.MyUserDetailsService;
+import com.middleware.api.service.impl.UserDetailsServiceImpl;
 
 
 
@@ -31,7 +31,7 @@ import com.middleware.api.service.impl.MyUserDetailsService;
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 	@Autowired
-	private MyUserDetailsService myUserDetailsService;
+	private UserDetailsServiceImpl myUserDetailsService;
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 

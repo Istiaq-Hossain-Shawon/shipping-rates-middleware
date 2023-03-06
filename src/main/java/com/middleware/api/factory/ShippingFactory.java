@@ -1,12 +1,12 @@
 package com.middleware.api.factory;
 
 import com.middleware.api.config.util.Courier;
-import com.middleware.api.service.IShippingRate;
+import com.middleware.api.service.ShippingRate;
 import com.middleware.api.service.impl.CityExpressRateImpl;
 import com.middleware.api.service.impl.JtExpressRateImpl;
 
 public class ShippingFactory {
-	   public IShippingRate getShippingRate(String courierName){
+	   public ShippingRate getShippingRate(String courierName){
 	      if(courierName == null){
 	         return null;
 	      }		

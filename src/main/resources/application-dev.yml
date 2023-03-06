@@ -16,16 +16,20 @@ spring:
 
 logging:
   level:
+    root: ERROR
+    org.springframework.ws: DEBUG
+    org.springframework.web: DEBUG
+    com.middleware: DEBUG
+    org.hibernate: ERROR
     org.springframework.web.client.RestTemplate: DEBUG
     org.apache.http: ERROR
     javax.net: ERROR
     sun.security.ssl: DEBUG
     sun.net: ERROR   
-    com.todotask: TRACE 
-    org.springframework.web: DEBUG
     java.security: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE   
     org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
-    org.apache.http.wire: ERROR
-
+    org.apache.http.wire: ERROR    
+  file: 
+    name: middleware.log  

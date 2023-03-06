@@ -11,7 +11,7 @@ import com.middleware.api.repository.UserRepository;
 import java.util.ArrayList;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
     private UserRepository repository;

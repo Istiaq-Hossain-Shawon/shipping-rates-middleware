@@ -20,12 +20,12 @@ public class CityLinkRateRequestImpl extends RateRequestTemplate {
 	
 	
 	@Override
-	protected
+	public
 	boolean isCSRFTokenNeed() {return false;}
 
 	
 	@Override
-	protected
+	public
 	boolean isAuthorizationTokenNeed() {return false;}	
 
 	

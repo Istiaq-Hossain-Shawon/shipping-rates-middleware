@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import com.middleware.api.config.util.Courier;
 import com.middleware.api.dto.ShippingRateDto;
 import com.middleware.api.request.ShippingRateRequestDto;
-import com.middleware.api.service.IShippingRate;
+import com.middleware.api.service.ShippingRate;
 import com.middleware.api.service.RateRequestTemplate;
 
-public class JtExpressRateImpl  implements IShippingRate{
+public class JtExpressRateImpl  implements ShippingRate{
 
 	private final Logger logger = LoggerFactory.getLogger(JtExpressRateImpl.class);
 	@Override

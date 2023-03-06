@@ -18,11 +18,11 @@ import com.middleware.api.repository.ShippingRateRequestRepository;
 import com.middleware.api.repository.ShippingRateResponseRepository;
 import com.middleware.api.request.ShippingRateRequestDto;
 import com.middleware.api.response.MiddlewareResponse;
-import com.middleware.api.service.IShippingRate;
-import com.middleware.api.service.ILogisticShippingService;
+import com.middleware.api.service.ShippingRate;
+import com.middleware.api.service.LogisticShippingService;
  
 @Service
-public class LogisticShippingServiceImpl implements  ILogisticShippingService
+public class LogisticShippingServiceImpl implements  LogisticShippingService
 {
 	  
 	private ShippingRateRequestRepository shippingRateRequestRepository;	
@@ -92,10 +92,10 @@ public class LogisticShippingServiceImpl implements  ILogisticShippingService
 		
 		ShippingFactory courierFactory = new ShippingFactory();
 	    
-        IShippingRate cityLinkShippingRate = courierFactory.getShippingRate(Courier.CITYLINK.getName());        
+        ShippingRate cityLinkShippingRate = courierFactory.getShippingRate(Courier.CITYLINK.getName());        
         data.add(cityLinkShippingRate.getRate(shippingRequest)); 
         	    
-        IShippingRate jtsShippingRate = courierFactory.getShippingRate(Courier.JTEXPRESS.getName());        
+        ShippingRate jtsShippingRate = courierFactory.getShippingRate(Courier.JTEXPRESS.getName());        
         data.add(jtsShippingRate.getRate(shippingRequest));			
 		
 		MiddlewareResponse responseDTO = ShippingRateUtil.createResponseSuccess();				
