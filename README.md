@@ -24,7 +24,7 @@ mvn clean install
 docker-compose build
 
 ```
-#### Step 4: Do docker compose build:
+#### Step 4: Do docker compose up:
 ```bash
 docker-compose up
 
@@ -35,7 +35,7 @@ use to this below URL for swagger documentation:
 
 http://localhost:8096/api/swagger-ui/index.html
 
-Docker will run with the production(prod) environment by default
+Docker will run this spring boot api project with the production(prod) environment by default
 
 ### Run Using Eclipse:
 
