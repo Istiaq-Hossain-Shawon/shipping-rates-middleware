@@ -3,7 +3,7 @@
 ## Getting started
 
 
-#### Using Maven :
+#### Run Project Using Docker :
 
 Follow these steps to get started:
 
@@ -13,17 +13,30 @@ Follow these steps to get started:
 $ git clone https://github.com/Istiaq-Hossain-Shawon/ShippingRateMiddleware
 
 ```
-#### Step 2: Go to project root directory and open cmd
+#### Step 2: Go to project root directory ShippingRateMiddleware and open cmd
 
 #### Step 3: Build Spring Boot Project with Maven
 ```bash
-mvn install 
+mvn clean install 
 ```
-#### Step 4: Run Spring Boot app using Maven:
+#### Step 4: Do docker compose build:
 ```bash
-mvn spring-boot:run
+docker-compose build
 
 ```
+#### Step 4: Do docker compose build:
+```bash
+docker-compose up
+
+```
+### Open Browers:
+
+use to this below URL for swagger documentation:
+
+http://localhost:8096/api/swagger-ui/index.html
+
+Docker will run with the production(prod) environment by default
+
 ### Run Using Eclipse:
 
 Follow these steps to get started:
@@ -40,7 +53,7 @@ $ git clone https://github.com/Istiaq-Hossain-Shawon/ShippingRateMiddleware
 
 ```
 
-#### Step 3: Import tototask Maven Project into Eclipse
+#### Step 3: Import  Maven Project into Eclipse
 
 To import an existing Maven project into Eclipse, just right-click the Package Explorer and go to:
 
@@ -59,18 +72,10 @@ Maven > Update Project...
 To provide mysql username and password , go to application-dev.yml  file from resources  and changes it :
 
 `
-url: jdbc:mysql://localhost:3306/shippingrate?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false
+url: jdbc:mysql://localhost:3306/shippingrate?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&serverTimezone=UTC&useSSL=false
 username: *****
 password: *****
 `
 
-#### Step 5: Run Java application
+#### Step 5: Run Sprint boot  application
 
-##  Run By DOCKER
-
-
-`mvn clean install
-docker-compose down 
-docker-compose build
-docker-compose up
-`
