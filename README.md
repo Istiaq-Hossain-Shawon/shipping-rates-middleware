@@ -69,7 +69,8 @@ password: *****
 ##  Run By DOCKER
 
 
-`mvn clean package 
-docker-compose down
+`mvn clean install
+docker-compose down 
+docker-compose build
 docker-compose up
 `
