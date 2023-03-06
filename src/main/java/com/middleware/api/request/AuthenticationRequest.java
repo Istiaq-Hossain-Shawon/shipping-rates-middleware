@@ -1,11 +1,18 @@
 package com.middleware.api.request;
 
 import java.io.Serializable;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class AuthenticationRequest implements Serializable {
 
-
+	 
+	@NotBlank
+	@NotNull(message = "username shouldn't be null")
     private String username;
+	
+	@NotBlank
+	@NotNull(message = "password shouldn't be null")
     private String password;
 
     public String getUsername() {

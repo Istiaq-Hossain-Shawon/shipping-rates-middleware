@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.middleware.api.config.util.Courier;
@@ -48,8 +49,13 @@ public class LogisticShippingServiceImpl implements  ILogisticShippingService
 					shippingRequest.getWidth(),
 					shippingRequest.getHeight(),
 					shippingRequest.getWeight(),
-					shippingRequest.getGoodsSelectedType()
+					shippingRequest.getGoodsSelectedType(),
+					shippingRequest.getShippingRatesType(),
+					shippingRequest.getItemValue(),
+					shippingRequest.getShippingType()
 					);
+			
+		
 
 			System.out.println("Existing Shipping Request");
 			for(var gadgets : existingShippingrequest){
@@ -71,12 +77,14 @@ public class LogisticShippingServiceImpl implements  ILogisticShippingService
 	@Override
 	public MiddlewareResponse getShippingRate(ShippingRateRequestDto shippingRequest) {		
 		
- 		
-//		var cacheResponse=requestCacheHandle(shippingRequest);
-//
-//		if(cacheResponse.getData()!=null && cacheResponse.getData().size()>0) {
-//			return cacheResponse;
-//		}		
+		
+		var cacheResponse=requestCacheHandle(shippingRequest);		
+		
+		if(cacheResponse.getData()!=null && cacheResponse.getData().size()>0) {
+			logger.info("Cache Data");
+			logger.info(cacheResponse.getData().toString());
+			return cacheResponse;
+		}		
 		
 		ShippingRateRequest shippingRateRequest=saveRequest(shippingRequest);
 		

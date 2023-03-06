@@ -41,16 +41,16 @@ public class ShippingRateRequest {
 	private String destinationPostcode;
 	
 	@Column(name = "length")
-	private String length;
+	private float length;
 	
 	@Column(name = "width")
-	private String width;
+	private float width;
 	
 	@Column(name = "height")
-	private String height;
+	private float height;
 	
 	@Column(name = "weight")
-	private String weight;
+	private float weight;
 	
 
 	@Column(name = "goods_selected_type")
@@ -60,12 +60,46 @@ public class ShippingRateRequest {
     @Column(name = "created_at", updatable = false)
     private Date createdAt;
 	
+	@Column(name = "shipping_rates_type")
+	private String shippingRatesType;
+	
+	@Column(name = "item_value")
+	private float itemValue;
+	
+	@Column(name = "shipping_type")
+	private String shippingType;
+	
+	
+	
+	public String getShippingRatesType() {
+		return shippingRatesType;
+	}
+
+	public void setShippingRatesType(String shippingRatesType) {
+		this.shippingRatesType = shippingRatesType;
+	}
+
+	public float getItemValue() {
+		return itemValue;
+	}
+
+	public void setItemValue(float itemValue) {
+		this.itemValue = itemValue;
+	}
+
+	public String getShippingType() {
+		return shippingType;
+	}
+
+	public void setShippingType(String shippingType) {
+		this.shippingType = shippingType;
+	}
 	@OneToOne(mappedBy = "shippingRateRequest")
     private ShippingRateResponse shippingRateResponse;
 
 	
 	
-	public void setWeight(String weight) {
+	public void setWeight(float weight) {
 		this.weight = weight;
 	}
 
@@ -73,7 +107,7 @@ public class ShippingRateRequest {
 		this.goodsSelectedType = goodsSelectedType;
 	}
 
-	public String getWeight() {
+	public float getWeight() {
 		return weight;
 	}
 
@@ -137,27 +171,27 @@ public class ShippingRateRequest {
 		this.destinationPostcode = destinationPostcode;
 	}
 
-	public String getLength() {
+	public float getLength() {
 		return length;
 	}
 
-	public void setLength(String length) {
+	public void setLength(float length) {
 		this.length = length;
 	}
 
-	public String getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
-	public void setWidth(String width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
-	public String getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(String height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 

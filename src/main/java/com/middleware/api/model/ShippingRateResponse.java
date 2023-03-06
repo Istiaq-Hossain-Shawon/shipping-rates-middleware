@@ -21,7 +21,7 @@ public class ShippingRateResponse {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "request_id",nullable = false)
     private ShippingRateRequest shippingRateRequest;
 	
