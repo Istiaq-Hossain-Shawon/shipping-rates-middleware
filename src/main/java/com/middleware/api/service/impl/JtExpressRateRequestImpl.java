@@ -77,7 +77,7 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 		requestBody.append("&receiver_postcode="+shippingRequest.getDestinationPostcode());
 		requestBody.append("&destination_country="+shippingRequest.getDestinationCountry());
 		requestBody.append("&shipping_type="+shippingRequest.getShippingType());
-		requestBody.append("&weight="+shippingRequest.getParcelWeight());
+		requestBody.append("&weight="+shippingRequest.getWeight());
 		requestBody.append("&length="+shippingRequest.getLength());
 		requestBody.append("&width="+shippingRequest.getWidth());
 		requestBody.append("&height="+shippingRequest.getHeight());

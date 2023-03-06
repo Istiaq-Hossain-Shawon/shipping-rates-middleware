@@ -35,10 +35,8 @@ public class ShippingRateRequestDto {
 	private float height;
 	
 	
-	private float parcelWeight;
-	
-	
-	private float documentWeight;	
+	private float weight;	
+		
 	 
 	private String goodsSelectedType;
 	
@@ -146,27 +144,18 @@ public class ShippingRateRequestDto {
 		this.height = height;
 	}
 
-	public float getParcelWeight() {
-		return parcelWeight;
+	public float getWeight() {
+		return weight;
 	}
 
-	public void setParcelWeight(float parcelWeight) {
-		this.parcelWeight = parcelWeight;
+	public void setWeight(float weight) {
+		this.weight = weight;
 	}
 
-	public float getDocumentWeight() {
-		return documentWeight;
-	}
-
-	public void setDocumentWeight(float documentWeight) {
-		this.documentWeight = documentWeight;
-	}
-
-	
 	@Override
 	public int hashCode() {
-		return Objects.hash(destinationCountry, destinationPostcode, destinationState, documentWeight, height, length,
-				originCountry, originPostcode, originState, parcelWeight, goodsSelectedType, width,itemValue);
+		return Objects.hash(destinationCountry, destinationPostcode, destinationState, height, length,
+				originCountry, originPostcode, originState, weight, goodsSelectedType, width,itemValue);
 	}
 	//need default constructor for JSON Parsing
     public ShippingRateRequestDto()
@@ -176,7 +165,7 @@ public class ShippingRateRequestDto {
 
 	public ShippingRateRequestDto(String originCountry, String originState, String originPostcode,
 			String destinationCountry, String destinationState, String destinationPostcode, float length, float width,
-			float height, float parcelWeight, float documentWeight, String selectedType,float itemValue) {
+			float height, float weight, String selectedType,float itemValue) {
 		super();
 		this.originCountry = originCountry;
 		this.originState = originState;
@@ -187,8 +176,7 @@ public class ShippingRateRequestDto {
 		this.length = length;
 		this.width = width;
 		this.height = height;
-		this.parcelWeight = parcelWeight;
-		this.documentWeight = documentWeight;
+		this.weight = weight;
 		this.goodsSelectedType = selectedType;
 		this.itemValue = itemValue;
 		
@@ -206,10 +194,10 @@ public class ShippingRateRequestDto {
 		return Objects.equals(destinationCountry, other.destinationCountry)
 				&& Objects.equals(destinationPostcode, other.destinationPostcode)
 				&& Objects.equals(destinationState, other.destinationState)
-				&& Objects.equals(documentWeight, other.documentWeight) && Objects.equals(height, other.height)
+				&& Objects.equals(height, other.height)
 				&& Objects.equals(length, other.length) && Objects.equals(originCountry, other.originCountry)
 				&& Objects.equals(originPostcode, other.originPostcode)
-				&& Objects.equals(originState, other.originState) && Objects.equals(parcelWeight, other.parcelWeight)
+				&& Objects.equals(originState, other.originState) && Objects.equals(weight, other.weight)
 				&& Objects.equals(goodsSelectedType, other.goodsSelectedType) && Objects.equals(width, other.width);
 	}
 
@@ -218,8 +206,8 @@ public class ShippingRateRequestDto {
 		return "ShippingRateRequestDto [originCountry=" + originCountry + ", originState=" + originState
 				+ ", originPostcode=" + originPostcode + ", destinationCountry=" + destinationCountry
 				+ ", destinationState=" + destinationState + ", destinationPostcode=" + destinationPostcode
-				+ ", length=" + length + ", width=" + width + ", height=" + height + ", parcelWeight=" + parcelWeight
-				+ ", documentWeight=" + documentWeight + ", goodsSelectedType=" + goodsSelectedType + "]";
+				+ ", length=" + length + ", width=" + width + ", height=" + height + ", parcelWeight=" + weight
+				+ ", goodsSelectedType=" + goodsSelectedType + "]";
 	}
 
 	public String getGoodsSelectedType() {

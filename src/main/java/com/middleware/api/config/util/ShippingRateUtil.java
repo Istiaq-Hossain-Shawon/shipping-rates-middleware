@@ -1,12 +1,15 @@
 package com.middleware.api.config.util;
 
-import java.util.Calendar;
+
 
 import com.middleware.api.response.MiddlewareResponse;
 
 
 public class ShippingRateUtil
 {
+	private ShippingRateUtil() {
+		throw new IllegalStateException("Shipping Rate Utility class");
+	}
 
 	public static Boolean checkIfNull(String... arguments)
 	{
@@ -21,8 +24,7 @@ public class ShippingRateUtil
 	}
 	public static MiddlewareResponse createResponseSuccess()
 	{
-		MiddlewareResponse responseDTO = new MiddlewareResponse();
-		return responseDTO;
+		return new MiddlewareResponse();		
 	}
 	public static MiddlewareResponse createResponseFalied(String message)
 	{
@@ -30,4 +32,5 @@ public class ShippingRateUtil
 		responseDTO.setMessage(message);
 		return responseDTO;
 	}
+	
 }

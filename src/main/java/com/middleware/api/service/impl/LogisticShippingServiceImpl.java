@@ -47,8 +47,7 @@ public class LogisticShippingServiceImpl implements  ILogisticShippingService
 					shippingRequest.getLength(),
 					shippingRequest.getWidth(),
 					shippingRequest.getHeight(),
-					shippingRequest.getParcelWeight(),
-					shippingRequest.getDocumentWeight(),
+					shippingRequest.getWeight(),
 					shippingRequest.getGoodsSelectedType()
 					);
 

@@ -1,4 +1,4 @@
-package com.middlewaretest.api;
+package com.middleware.api;
 
 import java.util.List;
 import java.util.Optional;

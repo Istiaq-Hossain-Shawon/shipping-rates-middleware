@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.middleware.api.config.util.ShippingRateUtil;
@@ -17,6 +18,7 @@ import com.middleware.api.service.ILogisticShippingService;
 
 
 @RestController
+@RequestMapping("/")
 public class ShippingRateController {
 	 
 	private ILogisticShippingService logisticShippingService;
@@ -28,7 +30,7 @@ public class ShippingRateController {
 	 private final Logger logger = LoggerFactory.getLogger(ShippingRateController.class);
 	 
 	
-	@PostMapping(value = "/get")	
+	@PostMapping(value = "/shipping-rates")	
 	public MiddlewareResponse getShippingRates(@RequestBody  ShippingRateRequestDto shippingRateRequest)
 	{		
 		try

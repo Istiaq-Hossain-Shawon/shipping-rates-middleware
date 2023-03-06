@@ -33,5 +33,7 @@ public class ShippingRateDto {
 		this.courier = courier;
 		this.rate = rate;
 	}	
-	
+	public ShippingRateDto() {
+		super();
+	}
 }

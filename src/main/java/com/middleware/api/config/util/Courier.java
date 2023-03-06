@@ -16,14 +16,9 @@ public enum Courier {
     {
         return this.url;
     }
-      
-    private Courier(String action)
+    Courier(String name,String url)
     {
-        this.name = action;
-    }
-    private Courier(String action,String url)
-    {
-        this.name = action;
+        this.name = name;
         this.url = url;
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.middleware.api.model.CityLinkExpressRequest;
+
 import com.middleware.api.model.ShippingRateRequest;
 
 
@@ -28,7 +28,7 @@ public interface ShippingRateRequestRepository extends JpaRepository<ShippingRat
 //			@Param("originPostcode") String originPostcode			
 //			);	
 	
-	@Query(value ="SELECT pst.* FROM shipping_rate_request_tbl  pst  where pst.origin_country like %:origin_country%   and pst.origin_state like %:origin_state%  and  pst.origin_postcode like %:origin_postcode%  and pst.destination_country like %:destination_country% and pst.destination_state like %:destination_state%  and pst.destination_postcode like %:destination_postcode%  and pst.length like %:length%  and pst.width like %:width% and pst.height like %:height%  and pst.parcel_weight like %:parcel_weight%  and pst.document_weight like %:document_weight%  and pst.selected_type like %:selected_type% ",nativeQuery = true)
+	@Query(value ="SELECT pst.* FROM shipping_rate_request_tbl  pst  where pst.origin_country like %:origin_country%   and pst.origin_state like %:origin_state%  and  pst.origin_postcode like %:origin_postcode%  and pst.destination_country like %:destination_country% and pst.destination_state like %:destination_state%  and pst.destination_postcode like %:destination_postcode%  and pst.length like %:length%  and pst.width like %:width% and pst.height like %:height%  and pst.weight like %:weight%  and pst.goods_selected_type like %:goods_selected_type% ",nativeQuery = true)
 	List<ShippingRateRequest> getShippingRateRequest(
 			@Param("origin_country") String origin_country,
 			@Param("origin_state") String origin_state,
@@ -39,8 +39,7 @@ public interface ShippingRateRequestRepository extends JpaRepository<ShippingRat
 			@Param("length") float length,
 			@Param("width") float width,
 			@Param("height") float height,
-			@Param("parcel_weight") float parcel_weight,
-			@Param("document_weight") float document_weight,
-			@Param("selected_type") String selected_type);	
+			@Param("weight") float weight,
+			@Param("goods_selected_type") String goods_selected_type);	
 	
 }

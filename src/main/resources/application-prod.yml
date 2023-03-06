@@ -1,7 +1,7 @@
 server:
     port: 8096
     servlet:
-      context-path: /shippingrate 
+      context-path: /api 
 spring:
   datasource:
     platform: mysql
