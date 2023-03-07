@@ -26,7 +26,7 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 	
 	JtExpressToken jtExpressToken= new JtExpressToken();
 	
-	String selectedGoodTypes =GoodTypes.PARCEL.getId();
+	int selectedGoodTypes =GoodTypes.PARCEL.getId();
 	
 	@Override
 	public boolean isCSRFTokenNeed() {return true;}
@@ -117,14 +117,14 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
         
         Element table = doc.select("table").get(0); 
         Elements rows = table.select("tr");
-        if(selectedGoodTypes.equals(GoodTypes.PARCEL.getId())) {
+        if(selectedGoodTypes==GoodTypes.PARCEL.getId()) {
         	Element row = rows.get(3);
 		    Elements cols = row.select("td");
 		    rates=Double.parseDouble(cols.get(0).text());
 		    logger.info(Courier.JTEXPRESS.getName());
 	        logger.info(Double.toString(rates));
         }
-        else if(selectedGoodTypes.equals(GoodTypes.DOCUMENT.getId())) {
+        else if(selectedGoodTypes==GoodTypes.DOCUMENT.getId()) {
         	Element row = rows.get(3);
 		    Elements cols = row.select("td");
 		    rates=Double.parseDouble(cols.get(1).text());

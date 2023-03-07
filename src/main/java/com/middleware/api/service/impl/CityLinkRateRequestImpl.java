@@ -49,10 +49,10 @@ public class CityLinkRateRequestImpl extends RateRequestTemplate {
 		requestBody.append("&height="+shippingRequest.getHeight());
 		requestBody.append("&selected_type="+shippingRequest.getGoodsSelectedType());
 		
-		if(shippingRequest.getGoodsSelectedType().equals(GoodTypes.PARCEL.getId())){
+		if(shippingRequest.getGoodsSelectedType()==GoodTypes.PARCEL.getId()){
 			requestBody.append("&parcel_weight="+shippingRequest.getWeight());
 		}
-		if(shippingRequest.getGoodsSelectedType().equals(GoodTypes.DOCUMENT.getId())){
+		if(shippingRequest.getGoodsSelectedType()==GoodTypes.DOCUMENT.getId()){
 			requestBody.append("&document_weight="+shippingRequest.getWeight());
 		}
 		

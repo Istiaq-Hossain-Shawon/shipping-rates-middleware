@@ -19,7 +19,10 @@ import com.middleware.api.request.AuthenticationRequest;
 import com.middleware.api.response.AuthenticationResponse;
 import com.middleware.api.service.impl.UserDetailsServiceImpl;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(tags = "JWT Token")
 @RestController
 public class JwtTokenAuth {
 
@@ -32,7 +35,7 @@ public class JwtTokenAuth {
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-	
+	@ApiOperation(value = "Get JWT Token")
 	@RequestMapping(value = "/requesttoken", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws MethodArgumentNotValidException,Exception {
 

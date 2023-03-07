@@ -3,8 +3,18 @@ package com.middleware.api.request;
 
 import java.util.Objects;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ShippingRateRequestDto {
 
 		
@@ -24,22 +34,21 @@ public class ShippingRateRequestDto {
 	
 	
 	private String destinationPostcode;
-	
-	
+	 
 	private float length;
 	
-	
+ 
 	private float width;
-	
-	
+	 
 	private float height;
 	
-	
+	 
 	private float weight;	
 		
-	 
-	private String goodsSelectedType;
-	
+	@Min(1)
+	@Max(2) 
+	private int goodsSelectedType;
+		
 	private String shippingRatesType;
 	
 	private String shippingType;
@@ -163,9 +172,10 @@ public class ShippingRateRequestDto {
 
     }
 
+
 	public ShippingRateRequestDto(String originCountry, String originState, String originPostcode,
 			String destinationCountry, String destinationState, String destinationPostcode, float length, float width,
-			float height, float weight, String selectedType,float itemValue) {
+			float height, float weight, int selectedType,float itemValue) {
 		super();
 		this.originCountry = originCountry;
 		this.originState = originState;
@@ -210,11 +220,11 @@ public class ShippingRateRequestDto {
 				+ ", goodsSelectedType=" + goodsSelectedType + "]";
 	}
 
-	public String getGoodsSelectedType() {
+	public int getGoodsSelectedType() {
 		return goodsSelectedType;
 	}
 
-	public void setGoodsSelectedType(String goodsSelectedType) {
+	public void setGoodsSelectedType(int goodsSelectedType) {
 		this.goodsSelectedType = goodsSelectedType;
 	}
 	

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -39,6 +40,19 @@ public class GlobalExceptionHandler {
 						request.getRequestURI(), request.getMethod(), "Could not process request"),
 				HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	@ExceptionHandler({ HttpMessageNotReadableException.class })
+	public ResponseEntity<ApiError> httpMessageNotReadableExceptionException(HttpMessageNotReadableException ex, HttpServletRequest request) {
+
+		logger.error("Invalid Parameters Exception : " + ex.getLocalizedMessage() + " for " + request.getRequestURI());
+
+		return new ResponseEntity<>(
+				new ApiError("JSON parse error:Invalid Parameter type", HttpStatus.BAD_REQUEST.toString(),
+						request.getRequestURI(), request.getMethod(), "Invalid Parameters passed.Check the request body"),
+				HttpStatus.BAD_REQUEST);
+	}
+	
+ 
+
 	
 	@ExceptionHandler({ com.middleware.api.config.exception.NotFoundException.class })
 	public ResponseEntity<ApiError> handleNotFoundException(NotFoundException ex, HttpServletRequest request) {
@@ -62,7 +76,7 @@ public class GlobalExceptionHandler {
 	        errors.add(fieldError.getField() + ": " + fieldError.getDefaultMessage());
 	    }
 		return new ResponseEntity<>(
-				new ApiError(ex.getLocalizedMessage(), HttpStatus.BAD_REQUEST.toString(),
+				new ApiError("Validation failed", HttpStatus.BAD_REQUEST.toString(),
 						request.getRequestURI(), request.getMethod(), errors.toString()),
 				HttpStatus.BAD_REQUEST);
 //	    return new ApiError("400", errors.toArray());

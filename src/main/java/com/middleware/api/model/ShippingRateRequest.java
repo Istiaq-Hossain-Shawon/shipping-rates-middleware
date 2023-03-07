@@ -54,7 +54,7 @@ public class ShippingRateRequest {
 	
 
 	@Column(name = "goods_selected_type")
-	private String goodsSelectedType;
+	private int goodsSelectedType;
 	
 	@CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -103,7 +103,7 @@ public class ShippingRateRequest {
 		this.weight = weight;
 	}
 
-	public void setGoodsSelectedType(String goodsSelectedType) {
+	public void setGoodsSelectedType(int goodsSelectedType) {
 		this.goodsSelectedType = goodsSelectedType;
 	}
 
@@ -111,7 +111,7 @@ public class ShippingRateRequest {
 		return weight;
 	}
 
-	public String getGoodsSelectedType() {
+	public int getGoodsSelectedType() {
 		return goodsSelectedType;
 	}
 

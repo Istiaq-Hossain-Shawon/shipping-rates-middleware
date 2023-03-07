@@ -1,16 +1,16 @@
 package com.middleware.api.config.util;
 
 public enum GoodTypes {
-	PARCEL("1"), 
-	DOCUMENT("2");
-	private String id;
+	PARCEL(1), 
+	DOCUMENT(2);
+	private int id;
 
-    public String getId()
+    public int getId()
     {
         return this.id;
     }
 
-	GoodTypes(String id) {
+	GoodTypes(int id) {
 		 this.id = id;
 	}
 }

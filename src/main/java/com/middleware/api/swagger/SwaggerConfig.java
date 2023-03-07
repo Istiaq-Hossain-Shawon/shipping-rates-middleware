@@ -20,15 +20,15 @@ public class SwaggerConfig {
     public static final String AUTHORIZATION_HEADER = "Authorization";
 
     private ApiKey apiKey(){
-        return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
+        return new ApiKey("JWT", AUTHORIZATION_HEADER, "Bearer");
         //return new ApiKey("JWT", AUTHORIZATION_HEADER, "Bearer");
         
     }
 
     private ApiInfo apiInfo(){
         return new ApiInfo(
-                "Spring Boot Blog REST APIs",
-                "Spring Boot Blog REST API Documentation",
+                "Shipping Rates Middleware REST APIs",
+                "Shipping Rates Middleware REST API Documentation",
                 "1",
                 "Terms of service",
                 new Contact("Istiaq Hossain", "", "hossain.ict@gmail.com"),

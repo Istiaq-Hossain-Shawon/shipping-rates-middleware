@@ -41,7 +41,7 @@ public interface ShippingRateRequestRepository extends JpaRepository<ShippingRat
 			@Param("width") float width,
 			@Param("height") float height,
 			@Param("weight") float weight,
-			@Param("goods_selected_type") String goods_selected_type,
+			@Param("goods_selected_type") int goods_selected_type,
 			@Param("shipping_rates_type") String shipping_rates_type,
 			@Param("item_value") float item_value,
 			@Param("shipping_type") String shipping_type
