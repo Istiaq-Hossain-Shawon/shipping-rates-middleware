@@ -2,7 +2,7 @@
 
 ## Have a look at the workflow
 
-https://raw.githubusercontent.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/ApiMiddlewareWorkflow.jpg
+![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/ApiMiddlewareWorkflow.jpg?raw=true) 
 
 #### Run Project Using Docker :
 
