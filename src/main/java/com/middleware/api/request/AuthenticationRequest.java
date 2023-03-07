@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class AuthenticationRequest implements Serializable {
 
 	 
+	private static final long serialVersionUID = 1L;
+
 	@NotBlank
 	@NotNull(message = "username shouldn't be null")
     private String username;

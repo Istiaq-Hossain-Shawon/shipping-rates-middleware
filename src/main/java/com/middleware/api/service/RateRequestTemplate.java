@@ -20,9 +20,9 @@ public abstract class RateRequestTemplate {
 
 		}
 
-		String shippingRateResponse=PostExternalURL(shippingRequest);
+		String shippingRateResponse= postExternalURL(shippingRequest);
 		
-		return ExtractRateFromResponse(shippingRateResponse);
+		return extractRateFromResponse(shippingRateResponse);
 
 	}
 	
@@ -32,9 +32,9 @@ public abstract class RateRequestTemplate {
 	public abstract boolean isCSRFTokenNeed();
 	public abstract boolean isAuthorizationTokenNeed();
 	
-	public abstract String PostExternalURL(ShippingRateRequestDto shippingRequest);
+	public abstract String postExternalURL(ShippingRateRequestDto shippingRequest);
 	
-	public abstract ShippingRateDto ExtractRateFromResponse(String shippingRateResponse);
+	public abstract ShippingRateDto extractRateFromResponse(String shippingRateResponse);
 
 	
 

@@ -66,7 +66,7 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 	public void getAuthorizationToken() { /* TODO document why this method is empty */ }
 	
 	@Override
-	public String PostExternalURL(ShippingRateRequestDto shippingRequest) {
+	public String postExternalURL(ShippingRateRequestDto shippingRequest) {
 		
 		RestTemplate restTemplate= new RestTemplate();		
         
@@ -110,7 +110,7 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 	}
 
 	@Override
-	public ShippingRateDto ExtractRateFromResponse(String jtRestResponse) {
+	public ShippingRateDto extractRateFromResponse(String jtRestResponse) {
 		Document doc = Jsoup.parse(jtRestResponse.toString());
         
         double rates=0;

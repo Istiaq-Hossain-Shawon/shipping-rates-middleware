@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.middleware.api.config.util.GoodTypes;
+import com.middleware.api.dto.ApiError;
 import com.middleware.api.dto.ShippingRateDto;
 import com.middleware.api.request.AuthenticationRequest;
 import com.middleware.api.request.ShippingRateRequestDto;
@@ -71,11 +72,32 @@ class ShippingRateMiddlewareApplicationTests {
 
 		AuthenticationResponse response = objectMapper.readValue(resultContext, AuthenticationResponse.class);
 
-		System.out.println(response.getJwt());
-
 		boolean isJwt = isJWT(response.getJwt());
 
 		Assert.assertEquals(Boolean.TRUE, isJwt);
+
+	}
+	
+	@Test
+	void getJwtTokenWithWrongUserNameAndPassword_When_WrongUserNameAndPasswordProvided_Then_ShouldGetInCorrectUserNamePasswordResponse() throws Exception {
+
+		AuthenticationRequest user = new AuthenticationRequest();
+		user.setUsername("wronguser");
+		user.setPassword("wronguser123456");
+
+		String JsonRequest = objectMapper.writeValueAsString(user);
+
+		MvcResult result = mockMvc
+				.perform(post("/requesttoken").content(JsonRequest).contentType(MediaType.APPLICATION_JSON_VALUE))
+				.andReturn();
+
+		String resultContext = result.getResponse().getContentAsString();
+
+		ApiError response = objectMapper.readValue(resultContext, ApiError.class);
+
+		String validationMessage = "Incorrect username or password";
+
+		Assert.assertEquals(validationMessage, response.getErrorMessage());
 
 	}
 
@@ -124,6 +146,103 @@ class ShippingRateMiddlewareApplicationTests {
 		Assert.assertEquals(sizeOfData, response.getData().size());
 
 	}
+	
+	// JUnit test case Fetching All Logistics Companies Rates with Wrong Goods Type
+		@Test
+		void getCompaniesRatesWithWrongGoodsType_When_GoodsTypeIsNotOneOrTwo_Then_OutputWillBeValidationFailed() throws Exception {
+
+			ShippingRateRequestDto shippingRateRequest = new ShippingRateRequestDto();
+
+			shippingRateRequest.setDestinationCountry("AW");
+			shippingRateRequest.setDestinationPostcode("50000");
+			shippingRateRequest.setDestinationState("Aruba");
+			shippingRateRequest.setOriginCountry("MY");
+			shippingRateRequest.setOriginPostcode("40000");
+			shippingRateRequest.setOriginState("Selangor");
+
+			shippingRateRequest.setGoodsSelectedType(3);
+
+			shippingRateRequest.setWeight(3);
+			shippingRateRequest.setHeight(12);
+			shippingRateRequest.setLength(32);
+			shippingRateRequest.setWidth(20);
+
+			shippingRateRequest.setShippingRatesType("domestic");
+			shippingRateRequest.setShippingType("EZ");
+			shippingRateRequest.setItemValue(0);
+
+			String JsonRequest = objectMapper.writeValueAsString(shippingRateRequest);
+
+			String token = getToken();
+
+			Principal mockPrincipal = Mockito.mock(Principal.class);
+			Mockito.when(mockPrincipal.getName()).thenReturn("me");
+
+			MvcResult result = mockMvc.perform(
+					post("/shipping-rates").principal(mockPrincipal).header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+							.content(JsonRequest).contentType(MediaType.APPLICATION_JSON_VALUE))
+					.andReturn();
+
+			String resultContext = result.getResponse().getContentAsString();
+
+			ApiError response = objectMapper.readValue(resultContext, ApiError.class);
+
+			String Custommessage = "[goodsSelectedType: must be less than or equal to 2]";
+
+			Assert.assertEquals(Custommessage, response.getCustomMessage());
+			
+			String validationMessage = "Validation failed";
+
+			Assert.assertEquals(validationMessage, response.getErrorMessage());
+
+		}
+		
+		// JUnit test case Fetching All Logistics Companies Rates without origin Postcode
+		@Test
+		void getCompaniesRatesWithOutOriginPostcode_When_OriginPostCodeIsNotProvided_Then_OutputWillBeValidationFailed() throws Exception {
+
+			ShippingRateRequestDto shippingRateRequest = new ShippingRateRequestDto();
+
+			shippingRateRequest.setDestinationCountry("AW");
+			shippingRateRequest.setDestinationPostcode("50000");
+			shippingRateRequest.setDestinationState("Aruba");
+			shippingRateRequest.setOriginCountry("MY");
+//			shippingRateRequest.setOriginPostcode("40000");
+			shippingRateRequest.setOriginState("Selangor");
+			shippingRateRequest.setGoodsSelectedType(2);
+			shippingRateRequest.setWeight(3);
+			shippingRateRequest.setHeight(12);
+			shippingRateRequest.setLength(32);
+			shippingRateRequest.setWidth(20);
+			shippingRateRequest.setShippingRatesType("domestic");
+			shippingRateRequest.setShippingType("EZ");
+			shippingRateRequest.setItemValue(0);
+
+			String JsonRequest = objectMapper.writeValueAsString(shippingRateRequest);
+
+			String token = getToken();
+
+			Principal mockPrincipal = Mockito.mock(Principal.class);
+			Mockito.when(mockPrincipal.getName()).thenReturn("me");
+
+			MvcResult result = mockMvc.perform(
+					post("/shipping-rates").principal(mockPrincipal).header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+							.content(JsonRequest).contentType(MediaType.APPLICATION_JSON_VALUE))
+					.andReturn();
+
+			String resultContext = result.getResponse().getContentAsString();
+
+			ApiError response = objectMapper.readValue(resultContext, ApiError.class);
+
+			String Custommessage = "[originPostcode: must not be null]";
+
+			Assert.assertEquals(Custommessage, response.getCustomMessage());
+			
+			String validationMessage = "Validation failed";
+
+			Assert.assertEquals(validationMessage, response.getErrorMessage());
+
+		}
 
 	private String getToken() throws Exception {
 		AuthenticationRequest user = new AuthenticationRequest();

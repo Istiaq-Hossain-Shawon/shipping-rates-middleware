@@ -5,7 +5,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.middleware.api.config.util.Courier;
@@ -54,12 +53,10 @@ public class LogisticShippingServiceImpl implements  LogisticShippingService
 					shippingRequest.getItemValue(),
 					shippingRequest.getShippingType()
 					);
-			
-		
 
-			System.out.println("Existing Shipping Request");
+			logger.info("Existing Shipping Request");
 			for(var gadgets : existingShippingrequest){
-			      System.out.println(gadgets.getOriginPostcode());
+				logger.info(gadgets.getOriginPostcode());
 			}
 			if(!existingShippingrequest.isEmpty()) {
 				
@@ -69,7 +66,7 @@ public class LogisticShippingServiceImpl implements  LogisticShippingService
 			}
 			
 		} catch (Exception e) {
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		return new MiddlewareResponse();		
 	}

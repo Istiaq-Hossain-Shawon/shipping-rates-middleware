@@ -35,7 +35,7 @@ public class CityLinkRateRequestImpl extends RateRequestTemplate {
 	@Override
 	public void getCSRFToken() { /* TODO document why this method is empty */ }
 	
-	public String PostExternalURL(ShippingRateRequestDto shippingRequest) {
+	public String postExternalURL(ShippingRateRequestDto shippingRequest) {
 		
 		StringBuilder requestBody = new StringBuilder();		 
 		requestBody.append("origin_country="+shippingRequest.getOriginCountry());
@@ -78,7 +78,7 @@ public class CityLinkRateRequestImpl extends RateRequestTemplate {
 	}
 
 	@Override
-	public ShippingRateDto ExtractRateFromResponse(String cityLinkRestResponse) {
+	public ShippingRateDto extractRateFromResponse(String cityLinkRestResponse) {
 		Gson gson = new Gson();
         CityLinkExpressResponse response = gson.fromJson(cityLinkRestResponse, CityLinkExpressResponse.class);
 

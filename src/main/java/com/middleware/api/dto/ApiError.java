@@ -60,6 +60,9 @@ public class ApiError {
 		this.requestType = requestType;
 		this.customMessage = customMessage;
 	}
+	public ApiError (){
+		super();
+	}
 	
 
 }

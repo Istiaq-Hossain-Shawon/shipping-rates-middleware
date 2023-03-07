@@ -5,9 +5,7 @@ import java.util.Objects;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -17,13 +15,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ShippingRateRequestDto {
 
+	
 		
 	private String originCountry;
 	
 	
 	private String originState;
 	
-	
+	@NotNull()
 	private String originPostcode;
 	
 	

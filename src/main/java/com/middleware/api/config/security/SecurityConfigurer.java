@@ -51,13 +51,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 		return super.authenticationManagerBean();
 	}
 
-	// private static final String[] AUTH_WHITELIST = {
-	//         "/authenticate",
-	//         "/swagger-resources/**",
-	//         "/swagger-ui/**",
-	//         "/v3/api-docs",
-	//         "/webjars/**"
-	// };
+
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
