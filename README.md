@@ -1,7 +1,8 @@
 
 
-## Getting started
+## Have a look at the workflow
 
+https://raw.githubusercontent.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/ApiMiddlewareWorkflow.jpg
 
 #### Run Project Using Docker :
 
@@ -10,7 +11,7 @@ Follow these steps to get started:
 #### Step 1: Clone this repository
 
 ```bash
-$ git clone https://github.com/Istiaq-Hossain-Shawon/ShippingRateMiddleware
+$ git clone https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware
 
 ```
 #### Step 2: Go to project root directory ShippingRateMiddleware and open cmd
@@ -49,7 +50,7 @@ You need to download the last version of Eclipse IDE for Java EE Developers, for
 #### Step 2: Clone this repository
 
 ```bash
-$ git clone https://github.com/Istiaq-Hossain-Shawon/ShippingRateMiddleware
+$ git clone https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware
 
 ```
 
