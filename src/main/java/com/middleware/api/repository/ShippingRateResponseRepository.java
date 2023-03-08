@@ -13,7 +13,7 @@ import com.middleware.api.model.ShippingRateResponse;
 
 public interface ShippingRateResponseRepository extends JpaRepository<ShippingRateResponse,Integer> {
 	@Transactional
-	public void saveAndFlush(Optional<ShippingRateResponse> shippingRateResponse);		
+	void saveAndFlush(Optional<ShippingRateResponse> shippingRateResponse);		
 	
 		
 }

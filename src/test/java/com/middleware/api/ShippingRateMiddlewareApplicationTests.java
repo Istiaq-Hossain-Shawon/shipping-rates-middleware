@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -56,6 +57,7 @@ import org.junit.Assert;
 @EnableTransactionManagement 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(value = true)
+@ActiveProfiles("test")
 class ShippingRateMiddlewareApplicationTests {
 
 	@Autowired
@@ -268,8 +270,8 @@ class ShippingRateMiddlewareApplicationTests {
 		}
 	 
 		@Test
-		@Transactional
-		@Rollback(value = true)
+//		@Transactional
+//		@Rollback(value = true)
 		void  requestCacheHandle_When_ValidRequestIsUsed_Then_CheckResponseExistInCacheDB() {
 
 			//Mock Request Dto
@@ -301,9 +303,7 @@ class ShippingRateMiddlewareApplicationTests {
 			
 			//Save Mock Response Dto
 			ShippingRateResponse shippingRateResponse=cacheHandleShippingService.saveResponse(request, responseDTO);
-					
 			
-			var dataRequest=cacheHandleShippingService.getRequestById(request.getId());
 			
 			//check Mock request and Response exist in DB or not
 			MiddlewareResponse response=cacheHandleShippingService.requestCacheHandle(shippingRateRequestDto);

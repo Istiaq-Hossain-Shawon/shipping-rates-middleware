@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.middleware.api.config.util.GoodTypes;
@@ -29,6 +30,7 @@ import org.junit.jupiter.api.MethodOrderer;
 @EnableTransactionManagement 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(value = true)
+@ActiveProfiles("test")
 public class ShippingRateRequestRepositoryTest {
 	
 	

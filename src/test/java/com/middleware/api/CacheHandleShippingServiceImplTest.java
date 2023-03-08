@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.google.gson.Gson;
@@ -42,6 +43,7 @@ import com.middleware.api.service.LogisticShippingService;
 @EnableTransactionManagement 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(value = true)
+@ActiveProfiles("test")
 public class CacheHandleShippingServiceImplTest {
 
 	@Autowired

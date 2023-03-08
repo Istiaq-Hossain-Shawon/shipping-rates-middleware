@@ -27,7 +27,7 @@ import com.middleware.api.service.LogisticShippingService;
 public class ShippingRateResponseServiceImpl implements ShippingRateResponseService{
 
 	 
-	public ShippingRateResponseRepository shippingRateResponseRepository;
+	private ShippingRateResponseRepository shippingRateResponseRepository;
 	private final Logger logger = LoggerFactory.getLogger(ShippingRateResponseServiceImpl.class);
 
 	public ShippingRateResponseServiceImpl(ShippingRateResponseRepository shippingRateResponseRepository) {

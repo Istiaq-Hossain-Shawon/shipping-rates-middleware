@@ -30,10 +30,10 @@ public class CacheHandleShippingServiceImpl implements CacheHandleShippingServic
 
 
 	@Autowired 
-	public  ShippingRateRequestService shippingRateRequestService;
+	private  ShippingRateRequestService shippingRateRequestService;
 	
 	@Autowired 
-	public ShippingRateResponseService shippingRateResponseService;
+	private ShippingRateResponseService shippingRateResponseService;
 	
 	private final Logger logger = LoggerFactory.getLogger(CacheHandleShippingService.class);
 
