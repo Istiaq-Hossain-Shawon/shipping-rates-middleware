@@ -15,6 +15,5 @@ public interface CacheHandleShippingService {
 	@Transactional
 	public ShippingRateResponse saveResponse(ShippingRateRequest shippingRateRequest, MiddlewareResponse responseDTO);
 	
-	@Transactional
-	public ShippingRateRequest getRequestById(int id);
+	
 }

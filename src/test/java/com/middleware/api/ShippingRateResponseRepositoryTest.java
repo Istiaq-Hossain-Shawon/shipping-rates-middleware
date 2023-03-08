@@ -1,18 +1,13 @@
 package com.middleware.api;
 
-import static org.mockito.Mockito.when;
-
-
 import javax.transaction.Transactional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -21,9 +16,6 @@ import com.middleware.api.model.ShippingRateRequest;
 import com.middleware.api.model.ShippingRateResponse;
 import com.middleware.api.repository.ShippingRateRequestRepository;
 import com.middleware.api.repository.ShippingRateResponseRepository;
-import com.middleware.api.request.ShippingRateRequestDto;
-
-import org.junit.Assert;
 import org.junit.jupiter.api.MethodOrderer;
 
 @SpringBootTest

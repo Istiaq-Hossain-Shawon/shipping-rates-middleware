@@ -1,6 +1,5 @@
 package com.middleware.api;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -9,14 +8,12 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.assertj.core.api.Assertions;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.runner.RunWith;
@@ -45,9 +42,6 @@ import com.middleware.api.request.ShippingRateRequestDto;
 import com.middleware.api.response.AuthenticationResponse;
 import com.middleware.api.response.MiddlewareResponse;
 import com.middleware.api.service.CacheHandleShippingService;
-import com.middleware.api.service.LogisticShippingService;
-import com.middleware.api.service.ShippingRateRequestService;
-import com.middleware.api.service.ShippingRateResponseService;
 
 import org.junit.Assert;
 

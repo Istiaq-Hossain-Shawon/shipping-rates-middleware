@@ -30,10 +30,10 @@ public class CityLinkRateRequestImpl extends RateRequestTemplate {
 
 	
 	@Override
-	public void getAuthorizationToken() { /* TODO document why this method is empty */ }
+	public void getAuthorizationToken() { /* No Need Authentication token for City Link */ }
 
 	@Override
-	public void getCSRFToken() { /* TODO document why this method is empty */ }
+	public void getCSRFToken() { /* No Need Authentication token for City Link */ }
 	
 	public String postExternalURL(ShippingRateRequestDto shippingRequest) {
 		
