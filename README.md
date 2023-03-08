@@ -56,12 +56,12 @@ Step 1: Get The JWT Token Using Username & password
 
 
 Request Body :
-```
+```bash
 {
    "username":"user1",
    "password":"123456"
 }
-```bash
+```
 Step 2:
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/JWT%20AUthorize.png?raw=true) 
@@ -74,7 +74,7 @@ Step 3:
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/CallGetRatesAPIWIthToken.PNG?raw=true) 
 
 Request Body :
-```
+```bash
 {   
     "destinationCountry": "AW",
     "destinationPostcode": "50000",
@@ -91,7 +91,7 @@ Request Body :
     "shippingRatesType": "domestic",
     "shippingType": "EZ"
 }
-```bash
+```
 
 Step 4:
 
