@@ -10,41 +10,101 @@ Once you have obtained a valid token, you can make requests to the `/api/shippin
 The API has the following endpoints:
 
 `/api/requesttoken`: Allows users to obtain a JWT token for authentication
+
 `/api/shipping-rates`: Allows users to retrieve shipping rates based on input data
 
-#### Run Project Using Docker :
+## Run Project Using Docker
 
 Follow these steps to get started:
 
-#### Step 1: Clone this repository
+`Step 1: Clone this repository`
 
 ```bash
 $ git clone https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware
 
 ```
-#### Step 2: Go to project root directory ShippingRateMiddleware and open cmd
+`Step 2: Go to project root directory shipping-rates-middleware and open cmd`
 
-#### Step 3: Build Spring Boot Project with Maven
+` Step 3: Build Spring Boot Project with Maven`
 ```bash
 mvn clean install 
 ```
-#### Step 4: Do docker compose build:
+` Step 4: Do docker compose build`
 ```bash
 docker-compose build
 
 ```
-#### Step 4: Do docker compose up:
+` Step 4: Do docker compose up`
 ```bash
 docker-compose up
 
 ```
 ### Open Browers:
 
-use to this below URL for swagger documentation:
+It will run this spring boot api project with the production(prod) environment by default
+
+Use below URL for swagger documentation:
 
 http://localhost:8096/api/swagger-ui/index.html
 
-Docker will run this spring boot api project with the production(prod) environment by default
+
+Test Flow using Swagger UI:
+
+Step 1: Get The JWT Token Using Username & password
+
+![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/GetTokenImage.png?raw=true) 
+
+
+Request Body :
+```
+{
+   "username":"user1",
+   "password":"123456"
+}
+```bash
+Step 2:
+
+![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/JWT%20AUthorize.png?raw=true) 
+
+
+
+Step 3:
+
+
+![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/CallGetRatesAPIWIthToken.PNG?raw=true) 
+
+Request Body :
+```
+{   
+    "destinationCountry": "AW",
+    "destinationPostcode": "50000",
+    "destinationState": "Aruba",
+    "documentWeight": 11,
+    "height": 12,
+    "length": 12,
+    "originCountry": "MY",
+    "originPostcode": "40000",
+    "originState": "Selangor",
+    "weight": 3,
+    "goodsSelectedType": 2,
+    "width": 20,
+    "shippingRatesType": "domestic",
+    "shippingType": "EZ"
+}
+```bash
+
+Step 4:
+
+![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/Authorized.png?raw=true) 
+
+Step 5:
+
+![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/Authorized.png?raw=true) 
+
+Step 6:
+
+![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/OutPutResponse.PNG?raw=true) 
+
 
 
 
