@@ -61,17 +61,28 @@ Request Body :
    "username":"user1",
    "password":"123456"
 }
+
 ```
-` Step 2:` Go `api/shipping-Rates` endpoint controller and  click the lock button to authorize and  Give jwt token in input field with Bearer 
+
+` Step 2:` Go `api/shipping-Rates` endpoint controller and  click the lock button to authorize  
+
+![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/AuthorizeButtonGetRates.PNG?raw=true) 
+
+
+
+
+` Step 3:` Go `api/shipping-Rates` endpoint controller and  click the lock button to authorize and  Give jwt token in input field with Bearer 
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/JWT%20AUthorize.png?raw=true) 
 
-`Step 3: ` Authorize  `api/shipping-Rates` Endpoints with JWT token
+
+
+`Step 4: ` Authorize  `api/shipping-Rates` Endpoints with JWT token
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/Authorized.png?raw=true) 
 
 
-` Step 4:`  Execute `api/shipping-Rates` 
+` Step 5:`  Execute `api/shipping-Rates` 
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/CallGetRatesAPIWIthToken.PNG?raw=true) 
 
@@ -95,7 +106,7 @@ Request Body :
 }
 ```
  
-`Step 5:` Output
+`Step 6:` Output
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/OutPutResponse.PNG?raw=true) 
 
