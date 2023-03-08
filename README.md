@@ -1,7 +1,7 @@
 
 # Shipping Rates Middleware REST API Documentation
 
-This API provides functionality to retrieve shipping rates of two logistics company  **city link** and **jt express** based on user input. The API is secured with JWT token authentication and can be accessed through HTTP requests.
+This API provides functionality to retrieve shipping rates of two logistics company  **City Link Express** and **JT Express** based on user input. The API is secured with JWT token authentication and can be accessed through HTTP requests.
 ## Getting started
 To start using the API, you will need to have a valid JWT token. To obtain a token, you can send a POST request to `/api/requesttoken` endpoint with a valid username and password in the request body.
 
@@ -34,7 +34,7 @@ mvn clean install
 docker-compose build
 
 ```
-` Step 4: Do docker compose up`
+` Step 5: Do docker compose up`
 ```bash
 docker-compose up
 
@@ -48,9 +48,9 @@ Use below URL for swagger documentation:
 http://localhost:8096/api/swagger-ui/index.html
 
 
-Test Flow using Swagger UI:
+### Test Flow using Swagger UI:
 
-Step 1: Get The JWT Token using  `api/requesttoken` endpoint with providing Username & password in request body
+`Step 1: ` Get The JWT Token using  `api/requesttoken` endpoint with providing Username & password in request body
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/GetTokenImage.png?raw=true) 
 
@@ -62,16 +62,16 @@ Request Body :
    "password":"123456"
 }
 ```
-Step 2: Give jwt token in input field with Bearer 
+` Step 2:`  Give jwt token in input field with Bearer 
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/JWT%20AUthorize.png?raw=true) 
 
-Step 3: Authorize  `api/shipping-Rates` Endpoints with JWT token
+`Step 3: ` Authorize  `api/shipping-Rates` Endpoints with JWT token
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/Authorized.png?raw=true) 
 
 
-Step 4: Execute `api/shipping-Rates` 
+` Step 4:`  Execute `api/shipping-Rates` 
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/CallGetRatesAPIWIthToken.PNG?raw=true) 
 
@@ -94,16 +94,10 @@ Request Body :
     "shippingType": "EZ"
 }
 ```
-
-
-Step 5:
-
-![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/Authorized.png?raw=true) 
-
-Step 6:
+ 
+`Step 5:` Output
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/OutPutResponse.PNG?raw=true) 
-
 
 
 
@@ -155,3 +149,12 @@ password: *****
 
 #### Step 5: Run Sprint boot  application
 
+
+# Error Handling
+The API returns error responses with appropriate HTTP status codes and error messages in the response body.
+
+# Technologies Used
+This API is built using `Java`, `the Spring Framework`, `Mysql` Database for RDMS and `Docker`. It uses JWT token authentication for security.
+
+# Conclusion
+This API provides a convenient way for users to retrieve shipping rates based on input data. The API is secured with JWT token authentication and returns appropriate error messages for invalid requests.
