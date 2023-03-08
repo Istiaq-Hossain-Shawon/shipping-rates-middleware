@@ -50,7 +50,7 @@ http://localhost:8096/api/swagger-ui/index.html
 
 ### Test Flow using Swagger UI:
 
-`Step 1: ` Get The JWT Token using  `api/requesttoken` endpoint with providing Username & password in request body
+`Step 1: ` Get The JWT Token using  `api/requesttoken` endpoint with providing Username & password in request body.Expand JWT Token area in swagger. 
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/GetTokenImage.png?raw=true) 
 
@@ -64,14 +64,12 @@ Request Body :
 
 ```
 
-` Step 2:` Go `api/shipping-Rates` endpoint controller and  click the lock button to authorize  
+` Step 2:` Go `api/shipping-Rates` endpoint controller and  click the lock button to provide jwt token.It will open a pop up window  
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/AuthorizeButtonGetRates.PNG?raw=true) 
 
 
-
-
-` Step 3:` Go `api/shipping-Rates` endpoint controller and  click the lock button to authorize and  Give jwt token in input field with Bearer 
+` Step 3:` Give jwt token in input field with Bearer  in the pop up window.
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/JWT%20AUthorize.png?raw=true) 
 
