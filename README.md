@@ -17,24 +17,24 @@ The API has the following endpoints:
 
 Follow these steps to get started:
 
-`Step 1: Clone this repository`
+`Step 1:` Clone this repository
 
 ```bash
 $ git clone https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware
 
 ```
-`Step 2: Go to project root directory shipping-rates-middleware and open cmd`
+`Step 2:` Go to project root directory shipping-rates-middleware and open cmd
 
-` Step 3: Build Spring Boot Project with Maven`
+` Step 3: `Build Spring Boot Project with Maven
 ```bash
 mvn clean install 
 ```
-` Step 4: Do docker compose build`
+` Step 4:` Do docker compose build
 ```bash
 docker-compose build
 
 ```
-` Step 5: Do docker compose up`
+` Step 5:` Do docker compose up
 ```bash
 docker-compose up
 
