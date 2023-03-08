@@ -62,7 +62,7 @@ Request Body :
    "password":"123456"
 }
 ```
-` Step 2:`  Give jwt token in input field with Bearer 
+` Step 2:` Go `api/shipping-Rates` endpoint controller and  click the lock button to authorize and  Give jwt token in input field with Bearer 
 
 ![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/JWT%20AUthorize.png?raw=true) 
 
