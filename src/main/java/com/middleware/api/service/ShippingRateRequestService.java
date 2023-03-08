@@ -5,6 +5,8 @@ import com.middleware.api.request.ShippingRateRequestDto;
 import com.middleware.api.response.MiddlewareResponse;
 
 public interface ShippingRateRequestService {
-	ShippingRateRequest saveRequest(ShippingRateRequestDto shippingRateRequest) ;
-	ShippingRateRequest filterShippingRateRequest(ShippingRateRequestDto shippingRateRequest) ;
+	public ShippingRateRequest saveRequest(ShippingRateRequestDto shippingRateRequest) ;
+	public ShippingRateRequest filterShippingRateRequest(ShippingRateRequestDto shippingRateRequest) ;
+	
+	public ShippingRateRequest getById(int id) ;
 }

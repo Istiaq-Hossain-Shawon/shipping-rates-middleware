@@ -25,8 +25,8 @@ import com.middleware.api.service.LogisticShippingService;
 @Service
 public class ShippingRateRequestServiceImpl implements ShippingRateRequestService{
 
-	private ShippingRateRequestRepository shippingRateRequestRepository;
-	private ShippingRateResponseRepository shippingRateResponseRepository;
+	public ShippingRateRequestRepository shippingRateRequestRepository;
+	public ShippingRateResponseRepository shippingRateResponseRepository;
 	private final Logger logger = LoggerFactory.getLogger(ShippingRateRequestServiceImpl.class);
 
 	public ShippingRateRequestServiceImpl(ShippingRateRequestRepository shippingRateRequestRepository,
@@ -41,6 +41,11 @@ public class ShippingRateRequestServiceImpl implements ShippingRateRequestServic
 		shippingRateRequest = shippingRateRequestRepository.saveAndFlush(shippingRateRequest);
 		return shippingRateRequest;
 	}
+	public ShippingRateRequest getById(int id) {
+		return shippingRateRequestRepository.findById(id).get();		
+	}
+	
+	
 	
 	public ShippingRateRequest filterShippingRateRequest(ShippingRateRequestDto shippingRequest) {
 		List<ShippingRateRequest> existingShippingrequestList = shippingRateRequestRepository

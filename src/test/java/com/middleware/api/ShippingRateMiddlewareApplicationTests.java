@@ -5,38 +5,57 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.assertj.core.api.Assertions;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.middleware.api.config.util.GoodTypes;
+import com.middleware.api.config.util.ShippingRateUtil;
 import com.middleware.api.dto.ApiError;
 import com.middleware.api.dto.ShippingRateDto;
+import com.middleware.api.model.ShippingRateResponse;
 import com.middleware.api.request.AuthenticationRequest;
 import com.middleware.api.request.ShippingRateRequestDto;
 import com.middleware.api.response.AuthenticationResponse;
 import com.middleware.api.response.MiddlewareResponse;
+import com.middleware.api.service.CacheHandleShippingService;
 import com.middleware.api.service.LogisticShippingService;
+import com.middleware.api.service.ShippingRateRequestService;
+import com.middleware.api.service.ShippingRateResponseService;
 
 import org.junit.Assert;
 
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @SpringBootTest
+@EnableTransactionManagement 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Rollback(value = true)
 class ShippingRateMiddlewareApplicationTests {
 
 	@Autowired
@@ -45,8 +64,10 @@ class ShippingRateMiddlewareApplicationTests {
 	@Autowired
 	private WebApplicationContext context;
 
+
 	@Autowired
-	private LogisticShippingService logisticShippingService;
+	private CacheHandleShippingService cacheHandleShippingService;
+	
 
 	ObjectMapper objectMapper = new ObjectMapper();
 
@@ -246,6 +267,51 @@ class ShippingRateMiddlewareApplicationTests {
 
 		}
 	 
+		@Test
+		@Transactional
+		@Rollback(value = true)
+		void  requestCacheHandle_When_ValidRequestIsUsed_Then_CheckResponseExistInCacheDB() {
+
+			//Mock Request Dto
+			ShippingRateRequestDto shippingRateRequestDto = new ShippingRateRequestDto();
+			shippingRateRequestDto.setDestinationCountry("AW");
+			shippingRateRequestDto.setDestinationPostcode("999994");
+			shippingRateRequestDto.setDestinationState("Aruba");
+			shippingRateRequestDto.setOriginCountry("MY");
+			shippingRateRequestDto.setOriginPostcode("999995");
+			shippingRateRequestDto.setOriginState("Selangor");
+			shippingRateRequestDto.setGoodsSelectedType(GoodTypes.PARCEL.getId());
+			shippingRateRequestDto.setWeight(3);
+			shippingRateRequestDto.setHeight(12);
+			shippingRateRequestDto.setLength(32);
+			shippingRateRequestDto.setWidth(20);
+			shippingRateRequestDto.setShippingRatesType("domestic");
+			shippingRateRequestDto.setShippingType("EZ");
+			shippingRateRequestDto.setItemValue(0);;
+			
+			//Save Mock Request Dto
+			var request=cacheHandleShippingService.saveRequest(shippingRateRequestDto);
+			
+			//Save Mock Response Dto
+			List<ShippingRateDto> data = new ArrayList<>();
+			data.add(new ShippingRateDto("citylink",12.0));
+			data.add(new ShippingRateDto("jtExpress",10.0));
+			MiddlewareResponse responseDTO = ShippingRateUtil.createResponseSuccess();
+			responseDTO.setData(data);
+			
+			//Save Mock Response Dto
+			ShippingRateResponse shippingRateResponse=cacheHandleShippingService.saveResponse(request, responseDTO);
+					
+			
+			var dataRequest=cacheHandleShippingService.getRequestById(request.getId());
+			
+			//check Mock request and Response exist in DB or not
+			MiddlewareResponse response=cacheHandleShippingService.requestCacheHandle(shippingRateRequestDto);
+			
+			System.out.println(response.toString());			
+			Assertions.assertThat(response.getData().size()>=1);
+			
+		}
 
 	private String getToken() throws Exception {
 		AuthenticationRequest user = new AuthenticationRequest();

@@ -30,10 +30,10 @@ public class CacheHandleShippingServiceImpl implements CacheHandleShippingServic
 
 
 	@Autowired 
-	private ShippingRateRequestService shippingRateRequestService;
+	public  ShippingRateRequestService shippingRateRequestService;
 	
 	@Autowired 
-	private ShippingRateResponseService shippingRateResponseService;
+	public ShippingRateResponseService shippingRateResponseService;
 	
 	private final Logger logger = LoggerFactory.getLogger(CacheHandleShippingService.class);
 
@@ -47,6 +47,9 @@ public class CacheHandleShippingServiceImpl implements CacheHandleShippingServic
 
 	public ShippingRateResponse saveResponse(ShippingRateRequest shippingRateRequest, MiddlewareResponse responseDTO) {
 		return shippingRateResponseService.saveResponse(shippingRateRequest, responseDTO);
+	}
+	public ShippingRateRequest getRequestById(int id) {
+		return shippingRateRequestService.getById(id);
 	}
 	
 	public MiddlewareResponse requestCacheHandle(ShippingRateRequestDto shippingRequest) {
