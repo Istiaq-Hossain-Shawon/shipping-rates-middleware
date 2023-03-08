@@ -1,8 +1,16 @@
 
+# Shipping Rates Middleware REST API Documentation
 
-## Have a look at the workflow
+This API provides functionality to retrieve shipping rates of two logistics company  **city link** and **jt express** based on user input. The API is secured with JWT token authentication and can be accessed through HTTP requests.
+## Getting started
+To start using the API, you will need to have a valid JWT token. To obtain a token, you can send a POST request to `/api/requesttoken` endpoint with a valid username and password in the request body.
 
-![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/ApiMiddlewareWorkflow.jpg?raw=true) 
+Once you have obtained a valid token, you can make requests to the `/api/shipping-rates` endpoint with a valid JSON request body containing the required information.
+## Endpoints
+The API has the following endpoints:
+
+`/api/requesttoken`: Allows users to obtain a JWT token for authentication
+`/api/shipping-rates`: Allows users to retrieve shipping rates based on input data
 
 #### Run Project Using Docker :
 
@@ -37,6 +45,14 @@ use to this below URL for swagger documentation:
 http://localhost:8096/api/swagger-ui/index.html
 
 Docker will run this spring boot api project with the production(prod) environment by default
+
+
+
+## Have a look at the workflow
+
+![alt text](https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware/blob/main/wiki-images/ApiMiddlewareWorkflow.jpg?raw=true) 
+
+
 
 ### Run Using Eclipse:
 
