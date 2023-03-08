@@ -94,9 +94,9 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 	    headers.set("X-Requested-With", "XMLHttpRequest");
-	    headers.set("X-CSRF-TOKEN", jtExpressToken.getToken());
-	    headers.set("csrf_token", jtExpressToken.getToken());
-	    headers.set("XSRF-TOKEN", jtExpressToken.getCookie());
+//	    headers.set("X-CSRF-TOKEN", jtExpressToken.getToken());
+//	    headers.set("csrf_token", jtExpressToken.getToken());
+//	    headers.set("XSRF-TOKEN", jtExpressToken.getCookie());
 	    headers.add("Cookie", jtExpressToken.getCookie() );
 	    
 	    HttpEntity<String> request = new HttpEntity<String>(

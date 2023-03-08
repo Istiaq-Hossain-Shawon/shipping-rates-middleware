@@ -1,10 +1,12 @@
 package com.middleware.api.service.impl;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.middleware.api.config.util.Courier;
@@ -18,106 +20,52 @@ import com.middleware.api.repository.ShippingRateResponseRepository;
 import com.middleware.api.request.ShippingRateRequestDto;
 import com.middleware.api.response.MiddlewareResponse;
 import com.middleware.api.service.ShippingRate;
+import com.middleware.api.service.ShippingRateRequestService;
+import com.middleware.api.service.CacheHandleShippingService;
 import com.middleware.api.service.LogisticShippingService;
- 
-@Service
-public class LogisticShippingServiceImpl implements  LogisticShippingService
-{
-	  
-	private ShippingRateRequestRepository shippingRateRequestRepository;	
-	private ShippingRateResponseRepository shippingRateResponseRepository;	
-	private final Logger logger = LoggerFactory.getLogger(LogisticShippingServiceImpl.class);
-	 
-	
-	
-	public LogisticShippingServiceImpl(ShippingRateRequestRepository shippingRateRequestRepository,ShippingRateResponseRepository shippingRateResponseRepository) {
-		this.shippingRateRequestRepository = shippingRateRequestRepository;
-		this.shippingRateResponseRepository = shippingRateResponseRepository;
-	}
-	 
-	private MiddlewareResponse requestCacheHandle(ShippingRateRequestDto shippingRequest) {
-		try {
-			List<ShippingRateRequest> existingShippingrequest=shippingRateRequestRepository.getShippingRateRequest(
-					shippingRequest.getOriginCountry(),
-					shippingRequest.getOriginState(),
-					shippingRequest.getOriginPostcode(),
-					shippingRequest.getDestinationCountry(),
-					shippingRequest.getDestinationState(),
-					shippingRequest.getDestinationPostcode(),
-					shippingRequest.getLength(),
-					shippingRequest.getWidth(),
-					shippingRequest.getHeight(),
-					shippingRequest.getWeight(),
-					shippingRequest.getGoodsSelectedType(),
-					shippingRequest.getShippingRatesType(),
-					shippingRequest.getItemValue(),
-					shippingRequest.getShippingType()
-					);
 
-			logger.info("Existing Shipping Request");
-			for(var gadgets : existingShippingrequest){
-				logger.info(gadgets.getOriginPostcode());
-			}
-			if(!existingShippingrequest.isEmpty()) {
-				
-				Gson g = new Gson();
-				MiddlewareResponse existingResponse = g.fromJson(existingShippingrequest.get(0).getShippingRateResponse().getDetailResponse(), MiddlewareResponse.class);
-				return existingResponse;
-			}
-			
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}
-		return new MiddlewareResponse();		
-	}
+@Service
+public class LogisticShippingServiceImpl implements LogisticShippingService {
+
+	 	
+	private final Logger logger = LoggerFactory.getLogger(LogisticShippingServiceImpl.class);
 	
+	@Autowired 
+	private CacheHandleShippingService cacheHandleShippingService;
+
+	public LogisticShippingServiceImpl() {
+		
+	}	
+
 	@Override
-	public MiddlewareResponse getShippingRate(ShippingRateRequestDto shippingRequest) {		
-		
-		
-		var cacheResponse=requestCacheHandle(shippingRequest);		
-		
-		if(cacheResponse.getData()!=null && cacheResponse.getData().size()>0) {
+	public MiddlewareResponse getShippingRate(ShippingRateRequestDto shippingRequest) {
+
+		var cacheResponse=cacheHandleShippingService.requestCacheHandle(shippingRequest);
+
+		if (cacheResponse.getData() != null && cacheResponse.getData().size() > 0) {
 			logger.info("Cache Data");
 			logger.info(cacheResponse.getData().toString());
 			return cacheResponse;
-		}		
-		
-		ShippingRateRequest shippingRateRequest=saveRequest(shippingRequest);
-		
-		List<ShippingRateDto> data=new ArrayList<>();
-		
+		}
+
+		ShippingRateRequest shippingRateRequest = cacheHandleShippingService.saveRequest(shippingRequest);
+
+		List<ShippingRateDto> data = new ArrayList<>();
+
 		ShippingFactory courierFactory = new ShippingFactory();
-	    
-        ShippingRate cityLinkShippingRate = courierFactory.getShippingRate(Courier.CITYLINK.getName());        
-        data.add(cityLinkShippingRate.getRate(shippingRequest)); 
-        	    
-        ShippingRate jtsShippingRate = courierFactory.getShippingRate(Courier.JTEXPRESS.getName());        
-        data.add(jtsShippingRate.getRate(shippingRequest));			
-		
-		MiddlewareResponse responseDTO = ShippingRateUtil.createResponseSuccess();				
-		responseDTO.setData(data);		
-		
-		saveResponse(shippingRateRequest,responseDTO);
-		
+
+		ShippingRate cityLinkShippingRate = courierFactory.getShippingRate(Courier.CITYLINK.getName());
+		data.add(cityLinkShippingRate.getRate(shippingRequest));
+
+		ShippingRate jtsShippingRate = courierFactory.getShippingRate(Courier.JTEXPRESS.getName());
+		data.add(jtsShippingRate.getRate(shippingRequest));
+
+		MiddlewareResponse responseDTO = ShippingRateUtil.createResponseSuccess();
+		responseDTO.setData(data);
+
+		cacheHandleShippingService.saveResponse(shippingRateRequest, responseDTO);
+
 		return responseDTO;
 	}
- 
-	private ShippingRateRequest saveRequest(ShippingRateRequestDto shippingRateRequestDto) {
-		var shippingRateRequest = new ShippingRateRequest();
-		BeanUtils.copyProperties(shippingRateRequestDto, shippingRateRequest);		
-		shippingRateRequest=shippingRateRequestRepository.saveAndFlush(shippingRateRequest);
-		return shippingRateRequest;
-	}	
-	private ShippingRateResponse saveResponse(ShippingRateRequest shippingRateRequest,MiddlewareResponse responseDTO) {
-		
-		Gson gson = new Gson();
-		String responeString=gson.toJson(responseDTO, MiddlewareResponse.class);
-		
-		var shippingRateResponse = new ShippingRateResponse();
-		shippingRateResponse.setShippingRateRequest(shippingRateRequest);
-		shippingRateResponse.setDetailResponse(responeString);	
-		shippingRateResponse=shippingRateResponseRepository.saveAndFlush(shippingRateResponse);
-		return shippingRateResponse;
-	}	
+
 }

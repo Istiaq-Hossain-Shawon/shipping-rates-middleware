@@ -78,6 +78,7 @@ class ShippingRateMiddlewareApplicationTests {
 
 	}
 	
+	
 	@Test
 	void getJwtTokenWithWrongUserNameAndPassword_When_WrongUserNameAndPasswordProvided_Then_ShouldGetInCorrectUserNamePasswordResponse() throws Exception {
 
@@ -100,6 +101,7 @@ class ShippingRateMiddlewareApplicationTests {
 		Assert.assertEquals(validationMessage, response.getErrorMessage());
 
 	}
+	 
 
 	// JUnit test case Fetching All Logistics Companies Rates
 	@Test
@@ -141,9 +143,9 @@ class ShippingRateMiddlewareApplicationTests {
 
 		MiddlewareResponse response = objectMapper.readValue(resultContext, MiddlewareResponse.class);
 
-		int sizeOfData = 2;
+		int expectedSizeOfData = 2;
 
-		Assert.assertEquals(sizeOfData, response.getData().size());
+		Assert.assertEquals(expectedSizeOfData, response.getData().size());
 
 	}
 	
@@ -243,6 +245,7 @@ class ShippingRateMiddlewareApplicationTests {
 			Assert.assertEquals(validationMessage, response.getErrorMessage());
 
 		}
+	 
 
 	private String getToken() throws Exception {
 		AuthenticationRequest user = new AuthenticationRequest();
