@@ -2,6 +2,7 @@ version: "3.7"
 services:
   api_service:
     build: .
+    platform: linux/amd64
     restart: always
     ports:
       - 8096:8096
