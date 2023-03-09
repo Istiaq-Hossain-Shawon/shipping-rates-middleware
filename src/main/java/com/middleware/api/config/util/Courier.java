@@ -2,7 +2,7 @@ package com.middleware.api.config.util;
 
 public enum Courier {
 	CITYLINK("citylink","https://www.citylinkexpress.com/wp-json/wp/v2/getShippingRate"), 
-	JTEXPRESS("jtexpress","https://www.jtexpress.my/shipping-rates");
+	JTEXPRESS("jt","https://www.jtexpress.my/shipping-rates");
 	
     private String name;
     
