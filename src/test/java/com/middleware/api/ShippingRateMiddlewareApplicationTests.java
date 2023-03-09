@@ -34,13 +34,13 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.middleware.api.config.util.GoodTypes;
 import com.middleware.api.config.util.ShippingRateUtil;
-import com.middleware.api.dto.ApiError;
-import com.middleware.api.dto.ShippingRateDto;
 import com.middleware.api.model.ShippingRateResponse;
 import com.middleware.api.request.AuthenticationRequest;
 import com.middleware.api.request.ShippingRateRequestDto;
+import com.middleware.api.response.ApiErrorResponse;
 import com.middleware.api.response.AuthenticationResponse;
 import com.middleware.api.response.MiddlewareResponse;
+import com.middleware.api.response.ShippingRateDto;
 import com.middleware.api.service.CacheHandleShippingService;
 
 import org.junit.Assert;
@@ -111,7 +111,7 @@ class ShippingRateMiddlewareApplicationTests {
 
 		String resultContext = result.getResponse().getContentAsString();
 
-		ApiError response = objectMapper.readValue(resultContext, ApiError.class);
+		ApiErrorResponse response = objectMapper.readValue(resultContext, ApiErrorResponse.class);
 
 		String validationMessage = "Incorrect username or password";
 
@@ -204,7 +204,7 @@ class ShippingRateMiddlewareApplicationTests {
 
 			String resultContext = result.getResponse().getContentAsString();
 
-			ApiError response = objectMapper.readValue(resultContext, ApiError.class);
+			ApiErrorResponse response = objectMapper.readValue(resultContext, ApiErrorResponse.class);
 
 			String Custommessage = "[goodsSelectedType: must be less than or equal to 2]";
 
@@ -251,7 +251,7 @@ class ShippingRateMiddlewareApplicationTests {
 
 			String resultContext = result.getResponse().getContentAsString();
 
-			ApiError response = objectMapper.readValue(resultContext, ApiError.class);
+			ApiErrorResponse response = objectMapper.readValue(resultContext, ApiErrorResponse.class);
 
 			String Custommessage = "[originPostcode: must not be null]";
 

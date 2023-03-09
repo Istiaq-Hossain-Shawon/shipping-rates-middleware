@@ -18,11 +18,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.middleware.api.config.util.GoodTypes;
 import com.middleware.api.config.util.ShippingRateUtil;
-import com.middleware.api.dto.ShippingRateDto;
 import com.middleware.api.model.ShippingRateRequest;
 import com.middleware.api.model.ShippingRateResponse;
 import com.middleware.api.request.ShippingRateRequestDto;
 import com.middleware.api.response.MiddlewareResponse;
+import com.middleware.api.response.ShippingRateDto;
 import com.middleware.api.service.ShippingRateRequestService;
 import com.middleware.api.service.ShippingRateResponseService;
 

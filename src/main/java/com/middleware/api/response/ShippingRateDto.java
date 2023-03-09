@@ -1,4 +1,4 @@
-package com.middleware.api.dto;
+package com.middleware.api.response;
 
 
 public class ShippingRateDto {

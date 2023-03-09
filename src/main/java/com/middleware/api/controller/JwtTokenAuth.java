@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.middleware.api.config.util.JwtUtil;
-import com.middleware.api.dto.ApiError;
 import com.middleware.api.request.AuthenticationRequest;
+import com.middleware.api.response.ApiErrorResponse;
 import com.middleware.api.response.AuthenticationResponse;
 import com.middleware.api.service.impl.UserDetailsServiceImpl;
 
@@ -49,8 +49,8 @@ public class JwtTokenAuth {
 			return ResponseEntity.ok(new AuthenticationResponse(jwt));
 		}
 		catch (Exception e) {
-			return new ResponseEntity<ApiError>(
-					new ApiError("Incorrect username or password", HttpStatus.BAD_REQUEST.toString(),
+			return new ResponseEntity<ApiErrorResponse>(
+					new ApiErrorResponse("Incorrect username or password", HttpStatus.BAD_REQUEST.toString(),
 							"", "", "Could not process request.Incorrect username or password"),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}

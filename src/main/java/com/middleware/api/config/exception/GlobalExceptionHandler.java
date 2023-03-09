@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.middleware.api.dto.ApiError;
+import com.middleware.api.response.ApiErrorResponse;
+
 import javassist.NotFoundException;
 
 import java.text.MessageFormat;
@@ -27,22 +28,22 @@ public class GlobalExceptionHandler {
 	private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 	@ExceptionHandler({ Exception.class })
-	public ResponseEntity<ApiError> genericException(Exception ex, HttpServletRequest request) {
+	public ResponseEntity<ApiErrorResponse> genericException(Exception ex, HttpServletRequest request) {
 
 		logger.error(MessageFormat.format("exception:{0} for {1}",ex.getLocalizedMessage(),request.getRequestURI()));
 
 		return new ResponseEntity<>(
-				new ApiError(ex.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR.toString(),
+				new ApiErrorResponse(ex.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR.toString(),
 						request.getRequestURI(), request.getMethod(), "Could not process request"),
 				HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	@ExceptionHandler({ HttpMessageNotReadableException.class })
-	public ResponseEntity<ApiError> httpMessageNotReadableExceptionException(HttpMessageNotReadableException ex, HttpServletRequest request) {
+	public ResponseEntity<ApiErrorResponse> httpMessageNotReadableExceptionException(HttpMessageNotReadableException ex, HttpServletRequest request) {
 
 		logger.error(MessageFormat.format("Invalid Parameters Exception:{0} for {1}",ex.getLocalizedMessage(),request.getRequestURI()));
 
 		return new ResponseEntity<>(
-				new ApiError("JSON parse error:Invalid Parameter type", HttpStatus.BAD_REQUEST.toString(),
+				new ApiErrorResponse("JSON parse error:Invalid Parameter type", HttpStatus.BAD_REQUEST.toString(),
 						request.getRequestURI(), request.getMethod(), "Invalid Parameters passed.Check the request body"),
 				HttpStatus.BAD_REQUEST);
 	}
@@ -51,7 +52,7 @@ public class GlobalExceptionHandler {
 
 	
 	@ExceptionHandler({ com.middleware.api.config.exception.NotFoundException.class })
-	public ResponseEntity<ApiError> handleNotFoundException(NotFoundException ex, HttpServletRequest request) {
+	public ResponseEntity<ApiErrorResponse> handleNotFoundException(NotFoundException ex, HttpServletRequest request) {
 
 		var exception=ex.getLocalizedMessage();
 		var uri=request.getRequestURI();
@@ -59,7 +60,7 @@ public class GlobalExceptionHandler {
 		logger.error(MessageFormat.format("Not found exception:{0} for {1}",exception,uri));
 
 		return new ResponseEntity<>(
-				new ApiError(ex.getLocalizedMessage(), HttpStatus.NOT_FOUND.toString(),
+				new ApiErrorResponse(ex.getLocalizedMessage(), HttpStatus.NOT_FOUND.toString(),
 						request.getRequestURI(), request.getMethod(), "Could not process request"),
 				HttpStatus.NOT_FOUND);
 	}
@@ -67,7 +68,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
-	public ResponseEntity<ApiError> handleValidationException(MethodArgumentNotValidException ex, HttpServletRequest request) {
+	public ResponseEntity<ApiErrorResponse> handleValidationException(MethodArgumentNotValidException ex, HttpServletRequest request) {
 	    BindingResult result = ex.getBindingResult();
 	    List<FieldError> fieldErrors = result.getFieldErrors();
 	    List<String> errors = new ArrayList();
@@ -75,7 +76,7 @@ public class GlobalExceptionHandler {
 	        errors.add(fieldError.getField() + ": " + fieldError.getDefaultMessage());
 	    }
 		return new ResponseEntity<>(
-				new ApiError("Validation failed", HttpStatus.BAD_REQUEST.toString(),
+				new ApiErrorResponse("Validation failed", HttpStatus.BAD_REQUEST.toString(),
 						request.getRequestURI(), request.getMethod(), errors.toString()),
 				HttpStatus.BAD_REQUEST);
 	}

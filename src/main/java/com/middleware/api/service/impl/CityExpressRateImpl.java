@@ -3,8 +3,8 @@ package com.middleware.api.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.middleware.api.config.util.Courier;
-import com.middleware.api.dto.ShippingRateDto;
 import com.middleware.api.request.ShippingRateRequestDto;
+import com.middleware.api.response.ShippingRateDto;
 import com.middleware.api.service.ShippingRate;
 import com.middleware.api.service.RateRequestTemplate;
 

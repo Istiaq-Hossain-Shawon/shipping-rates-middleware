@@ -1,6 +1,6 @@
-package com.middleware.api.dto;
+package com.middleware.api.response;
 
-public class ApiError {
+public class ApiErrorResponse {
 
     private String errorMessage;
 
@@ -52,7 +52,7 @@ public class ApiError {
 		this.customMessage = customMessage;
 	}
 
-	public ApiError(String errorMessage, String errorCode, String request, String requestType, String customMessage) {
+	public ApiErrorResponse(String errorMessage, String errorCode, String request, String requestType, String customMessage) {
 		super();
 		this.errorMessage = errorMessage;
 		this.errorCode = errorCode;
@@ -60,7 +60,7 @@ public class ApiError {
 		this.requestType = requestType;
 		this.customMessage = customMessage;
 	}
-	public ApiError (){
+	public ApiErrorResponse (){
 		super();
 	}
 	
