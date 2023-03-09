@@ -26,6 +26,8 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 	
 	JtExpressToken jtExpressToken= new JtExpressToken();
 	
+	
+	
 	int selectedGoodTypes =GoodTypes.PARCEL.getId();
 	
 	@Override
@@ -89,14 +91,10 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 		
 		logger.info(jtExpressToken.getCookie());		
 			
-		// logger.info(requestBody.toString());
 
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 	    headers.set("X-Requested-With", "XMLHttpRequest");
-//	    headers.set("X-CSRF-TOKEN", jtExpressToken.getToken());
-//	    headers.set("csrf_token", jtExpressToken.getToken());
-//	    headers.set("XSRF-TOKEN", jtExpressToken.getCookie());
 	    headers.add("Cookie", jtExpressToken.getCookie() );
 	    
 	    HttpEntity<String> request = new HttpEntity<String>(
@@ -135,4 +133,8 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
         return new ShippingRateDto(Courier.JTEXPRESS.getName(),rates);	
 		
 	}
+	public JtExpressToken getJtExpressToken() {
+		return jtExpressToken;
+	}
+	
 }
