@@ -47,7 +47,7 @@ import net.minidev.json.JSONObject;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(value = true)
 @ActiveProfiles("test")
-public class JtExpressRateRequestImplTest {
+ class JtExpressRateRequestImplTest {
 	
 	private JtExpressRateRequestImpl jtExpressRateRequestImpl= new JtExpressRateRequestImpl();	
 
@@ -74,10 +74,15 @@ public class JtExpressRateRequestImplTest {
 		shippingRateRequestDto.setShippingType("EZ");
 		shippingRateRequestDto.setItemValue(0);
 		
-		jtExpressRateRequestImpl.getCSRFToken();		
-		
-		Assertions.assertThat(!jtExpressRateRequestImpl.getJtExpressToken().getToken().isEmpty());	
-		Assertions.assertThat(!jtExpressRateRequestImpl.getJtExpressToken().getCookie().isEmpty());	
+		jtExpressRateRequestImpl.getCSRFToken();
+
+
+		boolean resutl=!jtExpressRateRequestImpl.getJtExpressToken().getToken().isEmpty();
+		Assertions.assertThat(resutl).isTrue();
+
+		boolean resutl2=!jtExpressRateRequestImpl.getJtExpressToken().getCookie().isEmpty();
+		Assertions.assertThat(resutl2).isTrue();
+
 
 		
 	}
@@ -112,7 +117,9 @@ public class JtExpressRateRequestImplTest {
 			String message="419 unknown status: [{\n"
 					+ "    \"message\": \"CSRF token mismatch.\"\n"
 					+ "}]";
-			Assertions.assertThat(e.getMessage().equals(message));	
+			boolean result=e.getMessage().equals(message);
+			Assertions.assertThat(result).isTrue();
+
 		}			
 		
 	}
@@ -148,7 +155,8 @@ public class JtExpressRateRequestImplTest {
 	        
 	        Element table = doc.select("table").get(0);     
 	        Elements rows = table.select("tr");
-	        Assertions.assertThat(!rows.isEmpty());			
+			boolean result=!rows.isEmpty();
+			Assertions.assertThat(result).isTrue();
 		}		
 		
 	}
@@ -181,7 +189,8 @@ public class JtExpressRateRequestImplTest {
 		if(isValidJson(jtRestResponse)) {
 			Gson gson = new Gson();
 			JTExpressErrorResponse response = gson.fromJson(jtRestResponse, JTExpressErrorResponse.class);
-	        Assertions.assertThat(response.getStatus().equals("fail"));			
+			boolean result=response.getStatus().equals("fail");
+			Assertions.assertThat(result).isTrue();
 		}	
 		
 	}
@@ -229,12 +238,13 @@ public class JtExpressRateRequestImplTest {
 		    rates=Double.parseDouble(cols.get(1).text());
 		    
         }
-		Assertions.assertThat(rates>=0);
+		boolean result=rates>=0;
+		Assertions.assertThat(result).isTrue();
 	}
 	
 	@Test
 	@Order(6)  
-	public void shouldNotExtractRateFromResponse_When_WeightHeightLengthWidthNotProvideInRequest_Then_ResponseFailShouldReturn() {
+	void shouldNotExtractRateFromResponse_When_WeightHeightLengthWidthNotProvideInRequest_Then_ResponseFailShouldReturn() {
 
 		ShippingRateRequestDto shippingRateRequestDto = new ShippingRateRequestDto();
 
@@ -256,7 +266,8 @@ public class JtExpressRateRequestImplTest {
 		if(isValidJson(jtRestResponse)) {
 			Gson gson = new Gson();
 			JTExpressErrorResponse response = gson.fromJson(jtRestResponse, JTExpressErrorResponse.class);
-	        Assertions.assertThat(response.getStatus().equals("fail"));			
+			boolean result=response.getStatus().equals("fail");
+			Assertions.assertThat(result).isTrue();
 		}		
 	}
 	

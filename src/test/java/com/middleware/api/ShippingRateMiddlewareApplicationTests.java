@@ -303,7 +303,8 @@ class ShippingRateMiddlewareApplicationTests {
 			MiddlewareResponse response=cacheHandleShippingService.requestCacheHandle(shippingRateRequestDto);
 			
 			System.out.println(response.toString());			
-			Assertions.assertThat(response.getData().size()>=1);
+			boolean result=response.getData().size()>=1;
+			Assertions.assertThat(result).isTrue();
 			
 		}
 

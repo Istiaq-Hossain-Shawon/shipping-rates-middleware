@@ -19,11 +19,7 @@ import com.middleware.api.service.LogisticShippingService;
 
 @Service
 public class LogisticShippingServiceImpl implements LogisticShippingService {
-
-	 	
-	private final Logger logger = LoggerFactory.getLogger(LogisticShippingServiceImpl.class);
-	
-	@Autowired 
+	@Autowired
 	private CacheHandleShippingService cacheHandleShippingService;
 
 

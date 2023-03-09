@@ -52,20 +52,21 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
                 .get("value");
         
         HttpHeaders responseHeaders = jtRestResponse.getHeaders();
-        
-        List<String> responseList =responseHeaders.get(HttpHeaders.SET_COOKIE);
-        
-        String setCookie1=responseList.get(0);
-        String setCookie2=responseList.get(1);
-        
+		String setCookie1="";
+		String setCookie2="";
+		List<String> responseList =responseHeaders.get(HttpHeaders.SET_COOKIE);
+		if(responseList!=null && responseList.size()>=1){
+			setCookie1=responseList.get(0);
+			setCookie2=responseList.get(1);
+		}
         String headerCookie=setCookie1+";"+setCookie2;
         jtExpressToken.setToken(tokenStr);
-        jtExpressToken.setCookie(headerCookie);       
+        jtExpressToken.setCookie(headerCookie);
 		
 	}
 
 	@Override
-	public void getAuthorizationToken() { /* TODO document why this method is empty */ }
+	public void getAuthorizationToken() { /* Do not need Authorization token for JT Express.Only need CSRFToken */ }
 	
 	@Override
 	public String postExternalURL(ShippingRateRequestDto shippingRequest) {
@@ -109,7 +110,7 @@ public class JtExpressRateRequestImpl extends RateRequestTemplate {
 
 	@Override
 	public ShippingRateDto extractRateFromResponse(String jtRestResponse) {
-		Document doc = Jsoup.parse(jtRestResponse.toString());
+		Document doc = Jsoup.parse(jtRestResponse);
         
         double rates=0;
         

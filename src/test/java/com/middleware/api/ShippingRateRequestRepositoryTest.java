@@ -24,7 +24,7 @@ import org.junit.jupiter.api.MethodOrderer;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(value = true)
 @ActiveProfiles("test")
-public class ShippingRateRequestRepositoryTest {
+ class ShippingRateRequestRepositoryTest {
 	
 	
 	@Autowired

@@ -31,7 +31,7 @@ import com.middleware.api.service.ShippingRateResponseService;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(value = true)
 @ActiveProfiles("test")
-public class CacheHandleShippingServiceImplTest {
+ class CacheHandleShippingServiceImplTest {
 
 	@Autowired
 	private ShippingRateRequestService shippingRateRequestService;

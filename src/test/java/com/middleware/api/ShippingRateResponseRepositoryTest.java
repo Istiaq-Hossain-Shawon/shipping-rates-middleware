@@ -21,7 +21,7 @@ import org.junit.jupiter.api.MethodOrderer;
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ActiveProfiles("test")
-public class ShippingRateResponseRepositoryTest {
+class ShippingRateResponseRepositoryTest {
 	
 	@Autowired
     private ShippingRateResponseRepository shippingRateResponseRepository;

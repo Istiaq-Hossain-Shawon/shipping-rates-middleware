@@ -11,7 +11,6 @@ import com.middleware.api.service.ShippingRateResponseService;
 @Service
 public class ShippingRateResponseServiceImpl implements ShippingRateResponseService{
 
-	 
 	private ShippingRateResponseRepository shippingRateResponseRepository;
 
 	public ShippingRateResponseServiceImpl(ShippingRateResponseRepository shippingRateResponseRepository) {

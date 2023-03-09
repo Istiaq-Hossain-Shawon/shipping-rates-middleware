@@ -35,12 +35,10 @@ import com.middleware.api.service.impl.CityLinkRateRequestImpl;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(value = true)
 @ActiveProfiles("test")
-public class CityLinkRateRequestImplTest {
+ class CityLinkRateRequestImplTest {
 
 	
 	private CityLinkRateRequestImpl cityLinkRateRequestImpl= new CityLinkRateRequestImpl();
-
-	 
 
 	@Test
 	void postExternalURL_When_ValidRequestIsUsed_Then_ShouldReturnValidCityLinkResponse() {
@@ -70,8 +68,8 @@ public class CityLinkRateRequestImplTest {
         CityLinkExpressResponse response = gson.fromJson(cityLinkRestResponse, CityLinkExpressResponse.class);
 
         int responseStatusFromCityLink = 200;         
-		
-		Assertions.assertThat(response.getReq().getStatus()==responseStatusFromCityLink);
+		boolean result=response.getReq().getStatus()==responseStatusFromCityLink;
+		Assertions.assertThat(result).isTrue();
 	}
 	@Test
 	void extractRateFromResponse_When_ValidRequestIsUsed_Then_ShouldExtractRateFromValidCityLinkResponse() {
@@ -98,8 +96,9 @@ public class CityLinkRateRequestImplTest {
 		
 		Gson gson = new Gson();
         CityLinkExpressResponse response = gson.fromJson(cityLinkRestResponse, CityLinkExpressResponse.class);
-		
-		Assertions.assertThat(response.getReq().getData().getRate()>=0);
+
+		boolean result=response.getReq().getData().getRate()>=0;
+		Assertions.assertThat(result).isTrue();
 	}
 	
 	 

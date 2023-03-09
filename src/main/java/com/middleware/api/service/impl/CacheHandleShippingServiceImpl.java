@@ -40,9 +40,8 @@ public class CacheHandleShippingServiceImpl implements CacheHandleShippingServic
 			ShippingRateRequest matchingRequestObject =shippingRateRequestService.filterShippingRateRequest(shippingRequest);
 			if (matchingRequestObject != null) {
 				Gson g = new Gson();
-				MiddlewareResponse existingResponse = g.fromJson(
+				return g.fromJson(
 						matchingRequestObject.getShippingRateResponse().getDetailResponse(), MiddlewareResponse.class);
-				return existingResponse;
 			}
 
 		} catch (Exception e) {
