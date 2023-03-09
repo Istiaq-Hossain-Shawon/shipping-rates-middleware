@@ -20,10 +20,14 @@ Follow these steps to get started:
 `Step 1:` Clone this repository
 
 ```bash
-$ git clone https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware
+git clone https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware
 
 ```
 `Step 2:` Go to project root directory shipping-rates-middleware and open cmd
+```bash
+cd shipping-rates-middleware 
+```
+
 
 ` Step 3: `Build Spring Boot Project with Maven
 ```bash
@@ -96,8 +100,8 @@ Request Body :
     "originCountry": "MY",
     "originPostcode": "40000",
     "originState": "Selangor",
-    "weight": 3,
-    "goodsSelectedType": 2,
+    "weight": 21,
+    "goodsSelectedType": 1,
     "width": 20,
     "shippingRatesType": "domestic",
     "shippingType": "EZ"
