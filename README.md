@@ -24,6 +24,10 @@ git clone https://github.com/Istiaq-Hossain-Shawon/shipping-rates-middleware
 
 ```
 `Step 2:` Go to project root directory shipping-rates-middleware and open cmd
+```bash
+cd shipping-rates-middleware 
+```
+
 
 ` Step 3: `Build Spring Boot Project with Maven
 ```bash
