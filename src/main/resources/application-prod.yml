@@ -33,4 +33,6 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE   
     org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
     org.apache.http.wire: ERROR
+  file: 
+    name: middleware-prod.log     
 
