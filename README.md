@@ -100,8 +100,8 @@ Request Body :
     "originCountry": "MY",
     "originPostcode": "40000",
     "originState": "Selangor",
-    "weight": 3,
-    "goodsSelectedType": 2,
+    "weight": 21,
+    "goodsSelectedType": 1,
     "width": 20,
     "shippingRatesType": "domestic",
     "shippingType": "EZ"
