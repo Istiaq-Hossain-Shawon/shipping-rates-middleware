@@ -137,7 +137,7 @@
 			<plugin>
 				<groupId>com.github.ferstl</groupId>
 				<artifactId>depgraph-maven-plugin</artifactId>
-				<version>4.0.2</version>
+				<version>4.0.1</version>
 			  </plugin>
 		</plugins>
 		<!-- Pour contourner un bug à la génération par Spring-boot 2.4.x : 
