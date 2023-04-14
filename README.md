@@ -1,6 +1,7 @@
 
 # Shipping Rates Middleware REST API Documentation
 
+
 This API provides functionality to retrieve shipping rates of two logistics company  **City Link Express** and **JT Express** based on user input. The API is secured with JWT token authentication and can be accessed through HTTP requests.
 ## Getting started
 To start using the API, you will need to have a valid JWT token. To obtain a token, you can send a POST request to `/api/requesttoken` endpoint with a valid username and password in the request body.
