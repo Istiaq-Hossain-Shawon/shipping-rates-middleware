@@ -24,7 +24,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y sshpass
+        run: sudo yum install apt-get && sudo apt-get update && sudo apt-get install -y sshpass
 
       - name: Add SSH private key to agent
         uses: webfactory/ssh-agent@v0.5.0
