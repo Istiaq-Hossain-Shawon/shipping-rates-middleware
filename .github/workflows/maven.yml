@@ -25,7 +25,9 @@ env:
 jobs:
   deploy:
     runs-on: self-hosted
-    steps:     
+    steps:    
+      - name: Print SSH_PRIVATE_KEY
+        run: echo "$SSH_PRIVATE_KEY"
         
       - name: Install dependencies
         run: sudo yum update -y sudo yum install -y sshpass
