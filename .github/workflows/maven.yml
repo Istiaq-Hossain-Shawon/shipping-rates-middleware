@@ -23,9 +23,7 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
-    steps:
-      - name: Print secret value
-        run: echo ${{ secrets.SSH_PRIVATE_KEY }}        
+    steps:     
         
       - name: Install dependencies
         run: sudo yum update -y sudo yum install -y sshpass
