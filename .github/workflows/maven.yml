@@ -28,20 +28,13 @@ jobs:
     steps:    
       - name: Print SSH_PRIVATE_KEY
         run: echo "$SSH_PRIVATE_KEY"
-        
-      - name: config SSH  
-        run:
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-add ~/.ssh/id_rsa
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}       
         
       - name: Install dependencies
         run: sudo yum update -y sudo yum install -y sshpass
-
-      - name: Add SSH private key to agent
-        uses: webfactory/ssh-agent@v0.5.0
-        with:
-          ssh-private-key: ${{ env.SSH_PRIVATE_KEY }}
 
       - name: Run command on instances
         run: 
